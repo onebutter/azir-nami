@@ -1,0 +1,50 @@
+.root {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input:focus {
+  outline: none;
+}
+
+.form {
+  & > * {
+    display: block;
+    width: 30vw;
+    min-width: 15rem;
+    margin: 0;
+    padding: 0;
+  }
+  padding: 2rem;
+  background-color: black;
+}
+
+.username {
+  margin-bottom: 1rem;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #797979;
+  padding: 0.5rem;
+}
+
+.password {
+  margin-bottom: 1rem;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #797979;
+  padding: 0.5rem;
+}
+
+.submitButton {
+  display: block;
+  border: 0;
+  border-radius: 0;
+  padding: 0.5rem;
+  margin-right: 10px;
+}

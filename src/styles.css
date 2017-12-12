@@ -5,6 +5,11 @@
   @custom-media --lg-viewport only screen and (min-width: 1224px);
 }
 
+html, body {
+  margin:0;
+  padding:0;
+}
+
 html {
   font-size: 12px;
   @media (--xs-viewport) {
