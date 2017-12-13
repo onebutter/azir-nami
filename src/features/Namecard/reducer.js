@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { createStatus } from 'Utils';
+import { createStatus } from 'Utils/reducer';
 import * as actions from './actions';
 const {
   NAMECARD_LOAD_REQUEST,

@@ -5,6 +5,10 @@
   justify-content: center;
 }
 
+input {
+  font-family: 'Assisstant', sans-serif;
+}
+
 input:focus {
   outline: none;
 }
@@ -26,6 +30,7 @@ input:focus {
   border-radius: 0;
   border-bottom: 1px solid rgb(60, 60, 60);
   padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .password {
@@ -34,6 +39,7 @@ input:focus {
   border-radius: 0;
   border-bottom: 1px solid rgb(60, 60, 60);
   padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .submitButton {
@@ -43,6 +49,8 @@ input:focus {
   margin-top: 1.5rem;
   padding: 0.5rem;
   width: 100%;
-  color: #c5c1c1;
+  color: rgb(60, 60, 60);
+  cursor: pointer;
   background-color: #e8e8e8;
+  font-size: 0.7rem;
 }

@@ -60,7 +60,8 @@ module.exports = {
     extensions: ['.js', '.json'],
     alias: {
       Features: path.join(process.cwd(), 'src', 'features'),
-      Utils: path.join(process.cwd(), 'src', 'utils')
+      Utils: path.join(process.cwd(), 'src', 'utils'),
+      config: path.join(process.cwd(), 'src', 'config')
     }
   },
   devtool: 'eval-source-map',
