@@ -28,6 +28,7 @@ class CredentialForm extends React.Component {
   render() {
     return (
       <div className={styles.root}>
+        <div className={styles.title}>Create your account</div>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <input
             className={styles.username}
