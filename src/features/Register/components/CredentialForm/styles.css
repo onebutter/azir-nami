@@ -1,5 +1,5 @@
 .root {
-  height: 100vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,37 +14,35 @@ input:focus {
     display: block;
     width: 30vw;
     min-width: 15rem;
-    margin: 0;
-    padding: 0;
   }
-  padding: 2rem;
-  background-color: black;
+  padding: 0;
+  background-color: #c5c1c1;
 }
 
 .username {
   margin-bottom: 1rem;
-  background-color: black;
-  color: white;
+  background-color: #c5c1c1;
   border: 0;
   border-radius: 0;
-  border-bottom: 1px solid #797979;
+  border-bottom: 1px solid rgb(60, 60, 60);
   padding: 0.5rem;
 }
 
 .password {
-  margin-bottom: 1rem;
-  background-color: black;
-  color: white;
+  background-color: #c5c1c1;
   border: 0;
   border-radius: 0;
-  border-bottom: 1px solid #797979;
+  border-bottom: 1px solid rgb(60, 60, 60);
   padding: 0.5rem;
 }
 
 .submitButton {
   display: block;
   border: 0;
-  border-radius: 0;
+  border-radius: 0.05rem;
+  margin-top: 1.5rem;
   padding: 0.5rem;
-  margin-right: 10px;
+  width: 100%;
+  color: #c5c1c1;
+  background-color: #e8e8e8;
 }
