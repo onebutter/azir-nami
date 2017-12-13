@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.css';
 
-class CredentialForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,7 +28,7 @@ class CredentialForm extends React.Component {
   render() {
     return (
       <div className={styles.root}>
-        <div className={styles.title}>Create your account</div>
+        <div className={styles.title}>Log In</div>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <input
             className={styles.username}
@@ -53,4 +53,4 @@ class CredentialForm extends React.Component {
   }
 }
 
-export default CredentialForm;
+export default LoginForm;
