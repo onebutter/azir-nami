@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
+import { Route } from 'react-router-dom';
 import { submitCredentialRequest } from './actions';
 import CredentialForm from './components/CredentialForm';
+import AuthRequiredRoute from 'Features/Auth/containers/AuthRequired';
 import styles from './styles.css';
 
 class RegisterContainer extends Component {
@@ -10,7 +13,20 @@ class RegisterContainer extends Component {
     const { submit } = this.props;
     return (
       <div className={styles.root}>
-        <CredentialForm submit={submit} />
+        <Route
+          exact
+          path="/register"
+          render={props => {
+            return <CredentialForm submit={submit} {...props} />;
+          }}
+        />
+        <AuthRequiredRoute
+          exact
+          path="/register/addcard"
+          render={() => {
+            return <div>aspodjfasdf</div>;
+          }}
+        />
       </div>
     );
   }
@@ -20,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
   submit: bindActionCreators(submitCredentialRequest, dispatch)
 });
 
-export default connect(null, mapDispatchToProps)(RegisterContainer);
+export default withRouter(connect(null, mapDispatchToProps)(RegisterContainer));

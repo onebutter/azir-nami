@@ -11,3 +11,14 @@ export const loginRequest = (credentials, redirect) => ({
   credentials,
   redirect
 });
+
+export const loginSuccess = (user, token) => ({
+  type: AUTH_LOGIN_SUCCESS,
+  user,
+  token
+});
+
+export const loginError = error => ({
+  type: AUTH_LOGIN_ERROR,
+  error
+});

@@ -13,6 +13,16 @@ const status = createStatus({
   error: [REGISTER_CREDENTIAL_SUBMIT_ERROR]
 });
 
+const error = (state = {}, action) => {
+  switch (action.type) {
+    case REGISTER_CREDENTIAL_SUBMIT_ERROR:
+      return { ...action.error };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
-  status
+  status,
+  error
 });

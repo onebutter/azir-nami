@@ -16,20 +16,56 @@ const status = createStatus({
   error: [AUTH_LOGIN_ERROR, AUTH_LOGOUT_ERROR]
 });
 
-const initialState = {
+const _access = {
   isAuthorized: false,
-  username: '',
   token: null
 };
 
-const access = (state = initialState, action) => {
+const access = (state = _access, action) => {
   switch (action.type) {
+    case AUTH_LOGOUT_REQUEST:
+      return _access;
+    case AUTH_LOGIN_SUCCESS:
+      return {
+        isAuthorized: true,
+        token: action.token
+      };
     default:
       return state;
   }
 };
 
+const _user = {
+  id: '',
+  username: ''
+};
+
+const user = (state = _user, action) => {
+  switch (action.type) {
+    case AUTH_LOGOUT_REQUEST:
+      return _user;
+    case AUTH_LOGIN_SUCCESS: {
+      const { username, id } = action.user;
+      return { username, id };
+    }
+    default:
+      return state;
+  }
+};
+
+const error = (state, action) => {
+  switch (action.type) {
+    case AUTH_LOGOUT_ERROR:
+    case AUTH_LOGIN_ERROR:
+      return { ...action.error };
+    default:
+      return {};
+  }
+};
+
 export default combineReducers({
   status,
+  error,
+  user,
   access
 });

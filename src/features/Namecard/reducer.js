@@ -28,7 +28,17 @@ const entities = (state = entitiesInitial, action) => {
   }
 };
 
+const error = (state, action) => {
+  switch (action.type) {
+    case NAMECARD_LOAD_ERROR:
+      return { ...action.error };
+    default:
+      return {};
+  }
+}
+
 export default combineReducers({
   status,
+  error,
   entities
 });

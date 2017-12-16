@@ -23,12 +23,22 @@ const request = (url, payload) => {
     .then(res => res.json());
 };
 
-export const postRegister = credentials => {
+export const postRegisterAPI = credentials => {
   const payload = {
     ...defaultOptions('POST'),
     body: JSON.stringify(credentials)
   };
 
   const uri = `${config.api.url}/auth/register`;
+  return request(uri, payload);
+};
+
+export const postLoginAPI = credentials => {
+  const payload = {
+    ...defaultOptions('POST'),
+    body: JSON.stringify(credentials)
+  };
+
+  const uri = `${config.api.url}/auth/login`;
   return request(uri, payload);
 };
