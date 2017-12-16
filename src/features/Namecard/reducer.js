@@ -35,7 +35,7 @@ const error = (state, action) => {
     default:
       return {};
   }
-}
+};
 
 export default combineReducers({
   status,
