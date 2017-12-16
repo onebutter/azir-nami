@@ -18,9 +18,11 @@ const configureStore = ({ history }) => {
   sagaMiddleware.run(sagas);
 
   if (module.hot) {
-    module.hot.accept('./reducers', () =>
-      store.replaceReducer(require('./reducers').default)
-    ); // eslint-disable-line global-require
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers');
+      store.replaceReducer(nextRootReducer);
+    });
   }
 
   return store;

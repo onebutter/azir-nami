@@ -24,7 +24,7 @@ class RegisterContainer extends Component {
           exact
           path="/register/addcard"
           render={() => {
-            return <div>aspodjfasdf</div>;
+            return <div>aspodasdfasdfjfasd</div>;
           }}
         />
       </div>
