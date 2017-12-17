@@ -1,7 +1,7 @@
 import config from 'config';
 import { defaultOptions, request } from 'Utils/api';
 
-export const getNamecardsByUsernameAPI = (token, username) => {
+export const getNamecards_Q_username = (token, username) => {
   const payload = {
     ...defaultOptions('GET', { token })
   };

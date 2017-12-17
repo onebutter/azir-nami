@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { getNamecardsByUsernameAPI } from './services';
+import { getNamecards_Q_username } from './services';
 import * as actions from './actions';
 
 export function* watchNamecardLoadRequest() {
@@ -9,7 +9,7 @@ export function* watchNamecardLoadRequest() {
 export function* loadNamecard(action) {
   try {
     const data = yield call(
-      getNamecardsByUsernameAPI,
+      getNamecards_Q_username,
       action.meta.token,
       action.username
     );

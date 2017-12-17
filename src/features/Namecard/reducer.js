@@ -13,7 +13,7 @@ const status = createStatus({
   error: [NAMECARD_LOAD_ERROR]
 });
 
-const entitiesInitial = null;
+const entitiesInitial = {};
 
 const entities = (state = entitiesInitial, action) => {
   switch (action.type) {
