@@ -1,9 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import reduxReset from 'redux-reset';
 import sagas from './sagas';
 import createTokenMiddleware from 'Features/Auth/utils/tokenMiddleware';
 import { createReducers } from './reducers';
@@ -25,10 +26,13 @@ const configureStore = ({ history }) => {
     routerMiddleware(history),
     sagaMiddleware
   ];
-  const store = createStore(
-    persistedReducer,
+
+  const enhancedCreateStore = compose(
+    reduxReset(),
     composeWithDevTools(applyMiddleware(...middlewares))
-  );
+  )(createStore);
+
+  const store = enhancedCreateStore(persistedReducer);
   const persistor = persistStore(store);
   sagaMiddleware.run(sagas);
 

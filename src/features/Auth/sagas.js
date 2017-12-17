@@ -19,4 +19,18 @@ export function* watchLoginRequest() {
   yield takeLatest(actions.AUTH_LOGIN_REQUEST, login);
 }
 
-export default [watchLoginRequest()];
+export function* logout() {
+  try {
+    yield put(actions.logoutSuccess());
+    yield put(push('/'));
+    yield put({ type: 'RESET' });
+  } catch (error) {
+    yield put(actions.logoutError(error));
+  }
+}
+
+export function* watchLogoutRequest() {
+  yield takeLatest(actions.AUTH_LOGOUT_REQUEST, logout);
+}
+
+export default [watchLoginRequest(), watchLogoutRequest()];
