@@ -44,11 +44,11 @@ module.exports = {
           },
           { loader: 'postcss-loader' }
         ]
+      },
+      {
+        test: /\.png$|\.jpg$|.jpeg|\.svg$/,
+        loaders: [{ loader: 'file-loader', options: { name: '[hash].[ext]' } }]
       }
-      // {
-      //   test: /\.png$|\.jpg$|.jpeg|\.svg$/,
-      //   loaders: [{ loader: 'file-loader', options: { name: '[hash].[ext]' } }]
-      // }
     ]
   },
   output: {
@@ -61,6 +61,7 @@ module.exports = {
     alias: {
       Features: path.join(process.cwd(), 'src', 'features'),
       Utils: path.join(process.cwd(), 'src', 'utils'),
+      Containers: path.join(process.cwd(), 'src', 'containers'),
       config: path.join(process.cwd(), 'src', 'config')
     }
   },

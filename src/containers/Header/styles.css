@@ -1,0 +1,30 @@
+.root {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+.right {
+  margin-right: 1rem;
+}
+
+.username {
+  font-weight: 700;
+}
+
+.logout {
+  display: inline;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background-color: white;
+  float: right;
+}

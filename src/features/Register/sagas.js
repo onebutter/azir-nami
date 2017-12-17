@@ -7,9 +7,7 @@ export function* register(action) {
   try {
     yield call(postRegisterAPI, action.credentials);
     yield put(actions.submitCredentialSuccess());
-    yield put(
-      authActions.loginRequest(action.credentials, '/register/addcard')
-    );
+    yield put(authActions.loginRequest(action.credentials, '/'));
   } catch (error) {
     yield put(actions.submitCredentialError(error));
   }

@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { withRouter } from 'react-router';
-import { Route } from 'react-router-dom';
 import { submitCredentialRequest } from './actions';
 import CredentialForm from './components/CredentialForm';
-import AuthRequiredRoute from 'Features/Auth/containers/AuthRequired';
 import styles from './styles.css';
 
 class RegisterContainer extends Component {
   render() {
-    const { submit } = this.props;
+    const { isAuthorized, submit } = this.props;
+    if (isAuthorized) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className={styles.root}>
-        <Route
-          exact
-          path="/register"
-          render={props => {
-            return <CredentialForm submit={submit} {...props} />;
-          }}
-        />
-        <AuthRequiredRoute
-          exact
-          path="/register/addcard"
-          render={() => {
-            return <div>aspodasdfasdfjfasd</div>;
-          }}
-        />
+        <CredentialForm submit={submit} />
       </div>
     );
   }
@@ -36,4 +24,8 @@ const mapDispatchToProps = dispatch => ({
   submit: bindActionCreators(submitCredentialRequest, dispatch)
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(RegisterContainer));
+const mapStateToProps = state => ({
+  isAuthorized: state.auth.access.isAuthorized
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

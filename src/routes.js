@@ -1,15 +1,22 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
+import AuthLayout from './layout/auth';
+import DefaultLayout from './layout/default';
+
 import RegisterView from './views/register';
 import LoginView from './views/login';
+import ManageNamecardView from './views/manageNamecard';
 import RootView from './views/root';
 
 const routes = (
   <Switch>
-    <LoginView exact path="/login" />
-    <RegisterView path="/register" />
-    <RootView />
+    <AuthLayout exact path="/login" component={LoginView} />
+    <AuthLayout exact path="/register" component={RegisterView} />
+
+    <DefaultLayout exact path="/namecard" component={ManageNamecardView} />
+    {/* <DefaultLayout path="/:username" component={NamecardView} /> */}
+    <DefaultLayout component={RootView} />
   </Switch>
 );
 

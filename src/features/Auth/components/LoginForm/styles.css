@@ -64,3 +64,8 @@ input:-webkit-autofill {
   background-color: #e8e8e8;
   font-size: 0.8rem;
 }
+
+.linkRegister {
+  margin-top: 1rem;
+  font-size: 0.7rem;
+}

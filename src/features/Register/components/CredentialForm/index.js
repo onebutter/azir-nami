@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles.css';
 
 class CredentialForm extends React.Component {
@@ -48,6 +49,9 @@ class CredentialForm extends React.Component {
           />
           <input className={styles.submitButton} type="submit" value="Submit" />
         </form>
+        <div className={styles.linkLogin}>
+          <Link to="/login">Login</Link>
+        </div>
       </div>
     );
   }
