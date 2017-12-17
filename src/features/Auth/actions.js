@@ -22,3 +22,16 @@ export const loginError = error => ({
   type: AUTH_LOGIN_ERROR,
   error
 });
+
+export const logoutRequest = () => ({
+  type: AUTH_LOGOUT_REQUEST
+});
+
+export const logoutSuccess = () => ({
+  type: AUTH_LOGOUT_SUCCESS
+});
+
+export const logoutError = error => ({
+  type: AUTH_LOGOUT_ERROR,
+  error
+});

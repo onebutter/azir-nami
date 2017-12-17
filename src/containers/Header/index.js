@@ -2,24 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-// import { logoutRequest } from 'Features/Auth/actions';
+import { push } from 'react-router-redux';
+import { logoutRequest } from 'Features/Auth/actions';
 import styles from './styles.css';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickLogout = this.handleClickLogout.bind(this);
+    this.handleClickLogo = this.handleClickLogo.bind(this);
+  }
+
+  handleClickLogo() {
+    this.props.redirectTo('/');
   }
 
   handleClickLogout() {
-    console.log('i wanna logout');
+    this.props.logout();
   }
 
   render() {
     const { isAuthorized, username } = this.props;
     return (
       <div className={styles.root}>
-        <div className={styles.logo}>REACHAF</div>
+        <div className={styles.logo} onClick={this.handleClickLogo}>
+          REACHAF
+        </div>
         <div className={styles.right}>
           {isAuthorized ? (
             <div>
@@ -42,4 +50,9 @@ const mapStateToProps = state => ({
   username: state.auth.user.username
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDistpatchToProps = dispatch => ({
+  logout: bindActionCreators(logoutRequest, dispatch),
+  redirectTo: bindActionCreators(push, dispatch)
+});
+
+export default connect(mapStateToProps, mapDistpatchToProps)(Header);

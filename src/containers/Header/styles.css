@@ -21,6 +21,10 @@
   font-weight: 700;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .logout {
   display: inline;
   font-size: 0.8rem;
