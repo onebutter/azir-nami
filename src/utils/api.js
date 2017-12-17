@@ -1,11 +1,20 @@
-import config from 'config';
-
-const defaultOptions = method => ({
-  method,
-  headers: new Headers({
-    'Content-Type': 'application/json'
-  })
-});
+export const defaultOptions = (method, options = {}) => {
+  if (options.token) {
+    return {
+      method,
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${options.token}`
+      })
+    };
+  }
+  return {
+    method,
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    })
+  };
+};
 
 const checkStatus = res => {
   if (res.status >= 200 && res.status < 300) return res;
@@ -17,28 +26,8 @@ const checkStatus = res => {
   throw error;
 };
 
-const request = (url, payload) => {
+export const request = (url, payload) => {
   return fetch(url, payload)
     .then(checkStatus)
     .then(res => res.json());
-};
-
-export const postRegisterAPI = credentials => {
-  const payload = {
-    ...defaultOptions('POST'),
-    body: JSON.stringify(credentials)
-  };
-
-  const uri = `${config.api.url}/auth/register`;
-  return request(uri, payload);
-};
-
-export const postLoginAPI = credentials => {
-  const payload = {
-    ...defaultOptions('POST'),
-    body: JSON.stringify(credentials)
-  };
-
-  const uri = `${config.api.url}/auth/login`;
-  return request(uri, payload);
 };

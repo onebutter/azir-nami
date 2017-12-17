@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import * as actions from './actions';
 import * as authActions from 'Features/Auth/actions';
-import { postRegisterAPI } from 'Utils/api';
+import { postRegisterAPI } from './services';
 
 export function* register(action) {
   try {

@@ -1,11 +1,11 @@
 import React from 'react';
 import AuthReqruiedRoute from 'Features/Auth/containers/AuthRequired';
-import styles from './styles.css';
+import ManageNamecards from 'Features/Namecard/containers/Manage';
 
 const ManageNamecardView = () => (
   <AuthReqruiedRoute
     render={() => {
-      return <div>manage your namecard</div>;
+      return <ManageNamecards />;
     }}
   />
 );

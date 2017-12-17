@@ -4,6 +4,7 @@ export const NAMECARD_LOAD_ERROR = 'NAMECARD_LOAD_ERROR';
 
 export const loadNamecardRequest = username => ({
   type: NAMECARD_LOAD_REQUEST,
+  meta: { authorization: true },
   username
 });
 

@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import * as actions from './actions';
-import { postLoginAPI } from 'Utils/api';
+import { postLoginAPI } from './services';
 
 export function* login(action) {
   try {
