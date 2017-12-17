@@ -28,12 +28,15 @@ const entities = (state = entitiesInitial, action) => {
   }
 };
 
-const error = (state, action) => {
+const error = (state = {}, action) => {
   switch (action.type) {
+    case NAMECARD_LOAD_REQUEST:
+    case NAMECARD_LOAD_SUCCESS:
+      return {};
     case NAMECARD_LOAD_ERROR:
       return { ...action.error };
     default:
-      return {};
+      return state;
   }
 };
 

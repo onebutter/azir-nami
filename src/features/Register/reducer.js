@@ -15,6 +15,9 @@ const status = createStatus({
 
 const error = (state = {}, action) => {
   switch (action.type) {
+    case REGISTER_CREDENTIAL_SUBMIT_REQUEST:
+    case REGISTER_CREDENTIAL_SUBMIT_SUCCESS:
+      return {};
     case REGISTER_CREDENTIAL_SUBMIT_ERROR:
       return { ...action.error };
     default:

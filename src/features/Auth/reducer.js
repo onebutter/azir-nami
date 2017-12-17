@@ -53,13 +53,18 @@ const user = (state = _user, action) => {
   }
 };
 
-const error = (state, action) => {
+const error = (state = {}, action) => {
   switch (action.type) {
+    case AUTH_LOGIN_SUCCESS:
+    case AUTH_LOGIN_REQUEST:
+    case AUTH_LOGOUT_SUCCESS:
+    case AUTH_LOGOUT_REQUEST:
+      return {};
     case AUTH_LOGOUT_ERROR:
     case AUTH_LOGIN_ERROR:
       return { ...action.error };
     default:
-      return {};
+      return state;
   }
 };
 
