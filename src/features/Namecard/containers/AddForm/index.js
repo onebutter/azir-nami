@@ -1,8 +1,10 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Namecard from '../../components/Namecard';
 import clone from 'lodash/fp/cloneDeep';
+import { createNamecardRequest } from '../../actions';
+import Namecard from '../../components/Namecard';
 import styles from './styles.css';
 
 class AddForm extends React.Component {
@@ -65,9 +67,8 @@ class AddForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     const { services, aliases } = this.state;
-    console.log('picked', { services, aliases });
+    this.props.create({ services, aliases });
   }
 
   addService() {
@@ -97,73 +98,85 @@ class AddForm extends React.Component {
         </div>
         <div className={styles.formDiv}>
           <form className={styles.form} onSubmit={this.handleSubmit}>
-            <input
-              className={styles.tag}
-              name="tag"
-              type="text"
-              value={tag}
-              onChange={this.handleChange}
-              placeholder="tag of this namecard"
-            />
-            <select value={privacy} onChange={this.handleChange} name="privacy">
-              <option value="default">default</option>
-              <option value="public">public</option>
-              <option value="private">private</option>
-              <option value="secret">secret</option>
-            </select>
-            <input
-              className={styles.serviceType}
-              name="services"
-              type="text"
-              value={normalize(services, sCounter, 'type')}
-              onChange={this.handleArrayChange}
-              placeholder="service type"
-              data-key="type"
-            />
-            <input
-              className={styles.serviceValue}
-              name="services"
-              type="text"
-              value={normalize(services, sCounter, 'value')}
-              onChange={this.handleArrayChange}
-              placeholder="service value"
-              data-key="value"
-            />
-            <button
-              className={styles.addServiceButton}
-              type="button"
-              onClick={this.addService}
-            >
-              Add Service
-            </button>
-            <input
-              className={styles.aliasType}
-              name="aliases"
-              type="text"
-              value={normalize(aliases, aCounter, 'type')}
-              onChange={this.handleArrayChange}
-              placeholder="alias type"
-              data-key="type"
-            />
-            <input
-              className={styles.aliasValue}
-              name="aliases"
-              type="text"
-              value={normalize(aliases, aCounter, 'value')}
-              onChange={this.handleArrayChange}
-              placeholder="alias value"
-              data-key="value"
-            />
-            <button
-              className={styles.addAliasButton}
-              type="button"
-              onClick={this.addAlias}
-            >
-              Add Alias
-            </button>
-            <button className={styles.submitButton} type="submit">
-              Submit
-            </button>
+            <div className={styles.row}>
+              <input
+                className={styles.tag}
+                name="tag"
+                type="text"
+                value={tag}
+                onChange={this.handleChange}
+                placeholder="tag of this namecard"
+              />
+              <select
+                value={privacy}
+                onChange={this.handleChange}
+                name="privacy"
+              >
+                <option value="default">default</option>
+                <option value="public">public</option>
+                <option value="private">private</option>
+                <option value="secret">secret</option>
+              </select>
+            </div>
+            <div className={styles.row}>
+              <input
+                className={styles.serviceType}
+                name="services"
+                type="text"
+                value={normalize(services, sCounter, 'type')}
+                onChange={this.handleArrayChange}
+                placeholder="service type"
+                data-key="type"
+              />
+              <input
+                className={styles.serviceValue}
+                name="services"
+                type="text"
+                value={normalize(services, sCounter, 'value')}
+                onChange={this.handleArrayChange}
+                placeholder="service value"
+                data-key="value"
+              />
+              <button
+                className={styles.addServiceButton}
+                type="button"
+                onClick={this.addService}
+              >
+                Add Service
+              </button>
+            </div>
+            <div className={styles.row}>
+              <input
+                className={styles.aliasType}
+                name="aliases"
+                type="text"
+                value={normalize(aliases, aCounter, 'type')}
+                onChange={this.handleArrayChange}
+                placeholder="alias type"
+                data-key="type"
+              />
+              <input
+                className={styles.aliasValue}
+                name="aliases"
+                type="text"
+                value={normalize(aliases, aCounter, 'value')}
+                onChange={this.handleArrayChange}
+                placeholder="alias value"
+                data-key="value"
+              />
+              <button
+                className={styles.addAliasButton}
+                type="button"
+                onClick={this.addAlias}
+              >
+                Add Alias
+              </button>
+            </div>
+            <div className={styles.row}>
+              <button className={styles.submitButton} type="submit">
+                Submit
+              </button>
+            </div>
           </form>
         </div>
         <div>
@@ -187,4 +200,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(AddForm);
+const mapDispatchToProps = dispatch => ({
+  create: bindActionCreators(createNamecardRequest, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);

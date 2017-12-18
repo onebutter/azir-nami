@@ -9,3 +9,13 @@ export const getNamecards_Q_username = (token, username) => {
   const uri = `${config.api.url}/namecards?username=${username}`;
   return request(uri, payload);
 };
+
+export const postNamecards = (token, body) => {
+  const payload = {
+    ...defaultOptions('POST', { token }),
+    body: JSON.stringify(body)
+  };
+
+  const uri = `${config.api.url}/namecards`;
+  return request(uri, payload);
+};
