@@ -47,7 +47,9 @@ class LoginForm extends React.Component {
             onChange={this.handleChange}
             placeholder="password"
           />
-          <input className={styles.submitButton} type="submit" value="Submit" />
+          <button className={styles.submitButton} type="submit">
+            Submit
+          </button>
         </form>
         <div className={styles.linkRegister}>
           <Link to="/register">Register</Link>

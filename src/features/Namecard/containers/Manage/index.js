@@ -1,8 +1,11 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Route, withRouter } from 'react-router';
 import { loadNamecardRequest } from '../../actions';
 import Namecard from '../../components/Namecard';
+import AddForm from '../AddForm';
 import styles from './styles.css';
 
 class Manage extends React.Component {
@@ -20,9 +23,6 @@ class Manage extends React.Component {
     if (!status.success) {
       return <div>loading...</div>;
     }
-    if (entities.length === 0) {
-      return <div>Create your namecard</div>;
-    }
 
     const namecardComponents = entities.map(
       ({ id, tag, services, aliases }) => (
@@ -35,7 +35,21 @@ class Manage extends React.Component {
         />
       )
     );
-    return <div className={styles.root}>{namecardComponents}</div>;
+    return (
+      <div className={styles.root}>
+        <div className={styles.addNamecard}>
+          <Route path="/namecard/add" component={AddForm} />
+        </div>
+        <div className={styles.addButton}>
+          <Route
+            exact
+            path="/namecard"
+            render={() => <Link to="/namecard/add">Add</Link>}
+          />
+        </div>
+        <div className={styles.namecards}>{namecardComponents}</div>
+      </div>
+    );
   }
 }
 
@@ -53,4 +67,4 @@ const mapDispatchToProps = dispatch => ({
   load: bindActionCreators(loadNamecardRequest, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Manage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Manage));

@@ -14,7 +14,8 @@ const routes = (
     <AuthLayout exact path="/login" component={LoginView} />
     <AuthLayout exact path="/register" component={RegisterView} />
 
-    <DefaultLayout exact path="/namecard" component={ManageNamecardView} />
+    <DefaultLayout path="/namecard" component={ManageNamecardView} />
+
     {/* <DefaultLayout path="/:username" component={NamecardView} /> */}
     <DefaultLayout component={RootView} />
   </Switch>
