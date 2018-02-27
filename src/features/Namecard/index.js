@@ -3,22 +3,34 @@ import { connect } from 'react-redux';
 import { loadNamecardRequest } from './actions';
 import styles from './styles.css';
 
-import Profile from './components/Profile';
-import Services from './components/Services';
+import Namecard from './components/Namecard';
 
 class NamecardContainer extends Component {
   componentDidMount() {
-    const { username } = this.props.match.params;
+    const { username } = this.props.computedMatch.params;
     this.props.load(username);
   }
 
   render() {
-    const { status, entity } = this.props;
+    const { status, entities } = this.props;
     if (status.success) {
+      const { username } = this.props.computedMatch.params;
+      const namecardComponents = entities.map(
+        ({ id, tag, services, aliases, privacy }) => (
+          <Namecard
+            key={id}
+            tag={tag}
+            privacy={privacy}
+            services={services}
+            aliases={aliases}
+            username={username}
+          />
+        )
+      );
       return (
         <div className={styles.root}>
-          <Profile content={entity.profile} />
-          <Services content={entity.services} />
+          <h3>{username}</h3>
+          <div>{namecardComponents}</div>
         </div>
       );
     }
@@ -31,10 +43,10 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state, props) => {
-  const { username } = props.match.params;
+  const { username } = props.computedMatch.params;
   return {
     status: state.namecard.status,
-    entity: state.namecard.entities && state.namecard.entities[username]
+    entities: state.namecard.entities && state.namecard.entities[username]
   };
 };
 

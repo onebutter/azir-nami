@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './styles.css';
 import Namecard from 'Features/Namecard';
 
-const NamecardView = () => (
+const NamecardView = ({ computedMatch }) => (
   <div className={styles.root}>
-    <Namecard />
+    <Namecard computedMatch={computedMatch} />
   </div>
 );
 

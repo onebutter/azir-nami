@@ -10,10 +10,10 @@ const Namecard = ({ username, tag, services, aliases, privacy }) => {
       <div className={styles.tag}>{tag}</div>
       <div className={styles.privacy}>{privacy}</div>
       <div className={styles.aliases}>
-        <Aliases content={aliases} />
+        {aliases && <Aliases content={aliases} />}
       </div>
       <div className={styles.services}>
-        <Services content={services} />
+        {services && <Services content={services} />}
       </div>
       <hr />
     </div>
