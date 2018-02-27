@@ -8,7 +8,6 @@ import Services from './components/Services';
 
 class NamecardContainer extends Component {
   componentDidMount() {
-    debugger;
     const { username } = this.props.match.params;
     this.props.load(username);
   }

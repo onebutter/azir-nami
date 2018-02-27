@@ -24,7 +24,7 @@ class SearchBox extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.root}>
         <input
           onChange={this.handleChange}
           type="text"
