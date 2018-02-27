@@ -25,10 +25,11 @@ class Manage extends React.Component {
     }
 
     const namecardComponents = entities.map(
-      ({ id, tag, services, aliases }) => (
+      ({ id, tag, services, aliases, privacy }) => (
         <Namecard
           key={id}
           tag={tag}
+          privacy={privacy}
           services={services}
           aliases={aliases}
           username={username}
@@ -38,13 +39,13 @@ class Manage extends React.Component {
     return (
       <div className={styles.root}>
         <div className={styles.addNamecard}>
-          <Route path="/namecard/add" component={AddForm} />
+          <Route path="/manage/add" component={AddForm} />
         </div>
         <div className={styles.addButton}>
           <Route
             exact
-            path="/namecard"
-            render={() => <Link to="/namecard/add">Add</Link>}
+            path="/manage"
+            render={() => <Link to="/manage/add">Add</Link>}
           />
         </div>
         <div className={styles.namecards}>{namecardComponents}</div>

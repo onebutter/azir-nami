@@ -7,6 +7,7 @@ import DefaultLayout from './layout/default';
 import RegisterView from './views/register';
 import LoginView from './views/login';
 import ManageNamecardView from './views/manageNamecard';
+import NamecardView from './views/namecard';
 import RootView from './views/root';
 
 const routes = (
@@ -14,9 +15,9 @@ const routes = (
     <AuthLayout exact path="/login" component={LoginView} />
     <AuthLayout exact path="/register" component={RegisterView} />
 
-    <DefaultLayout path="/namecard" component={ManageNamecardView} />
+    <DefaultLayout path="/manage" component={ManageNamecardView} />
 
-    {/* <DefaultLayout path="/:username" component={NamecardView} /> */}
+    <DefaultLayout path="/:username" component={NamecardView} />
     <DefaultLayout component={RootView} />
   </Switch>
 );

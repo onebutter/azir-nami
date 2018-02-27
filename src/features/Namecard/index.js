@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadNamecardRequest } from './actions';
 import styles from './styles.css';
@@ -9,6 +8,7 @@ import Services from './components/Services';
 
 class NamecardContainer extends Component {
   componentDidMount() {
+    debugger;
     const { username } = this.props.match.params;
     this.props.load(username);
   }
@@ -39,6 +39,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(NamecardContainer)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(NamecardContainer);
