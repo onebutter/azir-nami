@@ -8,31 +8,51 @@ import Namecard from '../../components/Namecard';
 import styles from './styles.css';
 
 class AddForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tag: '',
-      privacy: 'public',
-      aliases: [],
-      aCounter: 0,
-      services: [],
-      sCounter: 0
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleArrayChange = this.handleArrayChange.bind(this);
-    this.addAlias = this.addAlias.bind(this);
-    this.addService = this.addService.bind(this);
-  }
+  state = {
+    tag: '',
+    privacy: 'public',
+    aliases: [],
+    aCounter: 0,
+    services: [],
+    sCounter: 0
+  };
 
-  handleChange(e) {
+  handleChange = e => {
     const { value, name } = e.target;
     this.setState({
       [name]: value
     });
-  }
+  };
 
-  updateArray(arr, i, key, value) {
+  handleArrayChange = e => {
+    const { value, name, dataset } = e.target;
+    if (name === 'services') {
+      const { services, sCounter } = this.state;
+      const newArray = AddForm.updateArray(
+        services,
+        sCounter,
+        dataset.key,
+        value
+      );
+      return this.setState({
+        services: newArray
+      });
+    }
+    if (name === 'aliases') {
+      const { aliases, aCounter } = this.state;
+      const newArray = AddForm.updateArray(
+        aliases,
+        aCounter,
+        dataset.key,
+        value
+      );
+      return this.setState({
+        aliases: newArray
+      });
+    }
+  };
+
+  static updateArray(arr, i, key, value) {
     let resultArr = clone(arr);
     if (resultArr.length === 0) {
       return [{ [key]: value }];
@@ -47,25 +67,7 @@ class AddForm extends React.Component {
     }
   }
 
-  handleArrayChange(e) {
-    const { value, name, dataset } = e.target;
-    if (name === 'services') {
-      const { services, sCounter } = this.state;
-      const newArray = this.updateArray(services, sCounter, dataset.key, value);
-      return this.setState({
-        services: newArray
-      });
-    }
-    if (name === 'aliases') {
-      const { aliases, aCounter } = this.state;
-      const newArray = this.updateArray(aliases, aCounter, dataset.key, value);
-      return this.setState({
-        aliases: newArray
-      });
-    }
-  }
-
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { tag, privacy, services, aliases } = this.state;
     this.props.create({
@@ -74,19 +76,19 @@ class AddForm extends React.Component {
       services,
       aliases
     });
-  }
+  };
 
-  addService() {
+  addService = () => {
     this.setState({
       sCounter: this.state.sCounter + 1
     });
-  }
+  };
 
-  addAlias() {
+  addAlias = () => {
     this.setState({
       aCounter: this.state.aCounter + 1
     });
-  }
+  };
 
   render() {
     const { tag, services, aliases, privacy, sCounter, aCounter } = this.state;

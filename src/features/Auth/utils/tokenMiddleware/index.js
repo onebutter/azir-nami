@@ -13,12 +13,7 @@ export default function createAuthorizationMiddleware() {
 
     if (action.meta && action.meta.authorization) {
       const state = store.getState();
-      const isAuthorized = state.auth.access.isAuthorized;
-      if (!isAuthorized) {
-        store.dispatch(logoutRequest());
-        return next(action);
-      }
-      const { token } = state.auth.access;
+      const { token, isAuthorized } = state.auth.access;
       if (isAuthorized && token) {
         const newAction = { ...action, meta: { ...action.meta, token } };
         return next(newAction);

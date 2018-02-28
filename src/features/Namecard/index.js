@@ -6,7 +6,7 @@ import styles from './styles.css';
 import Namecard from './components/Namecard';
 
 class NamecardContainer extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { username } = this.props.computedMatch.params;
     this.props.load(username);
   }
