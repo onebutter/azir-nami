@@ -67,8 +67,13 @@ class AddForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { services, aliases } = this.state;
-    this.props.create({ services, aliases });
+    const { tag, privacy, services, aliases } = this.state;
+    this.props.create({
+      tag,
+      privacy,
+      services,
+      aliases
+    });
   }
 
   addService() {
