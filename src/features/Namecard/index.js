@@ -6,14 +6,14 @@ import styles from './styles.css';
 import Namecard from './components/Namecard';
 
 class NamecardContainer extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const { username } = this.props.computedMatch.params;
     this.props.load(username);
   }
 
   render() {
     const { status, entities } = this.props;
-    if (status.success) {
+    if (status.success && entities) {
       const { username } = this.props.computedMatch.params;
       const namecardComponents = entities.map(
         ({ id, tag, services, aliases, privacy }) => (
