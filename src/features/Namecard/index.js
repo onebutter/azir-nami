@@ -4,6 +4,7 @@ import { loadNamecardRequest } from './actions';
 import styles from './styles.css';
 
 import Namecard from './components/Namecard';
+import ErrorUserNotFound from './components/ErrorUserNotFound';
 
 class NamecardContainer extends Component {
   componentDidMount() {
@@ -13,8 +14,8 @@ class NamecardContainer extends Component {
 
   render() {
     const { status, entities } = this.props;
+    const { username } = this.props.computedMatch.params;
     if (status.success && entities) {
-      const { username } = this.props.computedMatch.params;
       const namecardComponents = entities.map(
         ({ id, tag, services, aliases, privacy }) => (
           <Namecard
@@ -31,6 +32,14 @@ class NamecardContainer extends Component {
         <div className={styles.root}>
           <h3>{username}</h3>
           <div>{namecardComponents}</div>
+        </div>
+      );
+    }
+
+    if (status.error) {
+      return (
+        <div className={styles.root}>
+          <ErrorUserNotFound username={username} />
         </div>
       );
     }

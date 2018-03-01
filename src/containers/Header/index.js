@@ -7,19 +7,17 @@ import { logoutRequest } from 'Features/Auth/actions';
 import styles from './styles.css';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClickLogout = this.handleClickLogout.bind(this);
-    this.handleClickLogo = this.handleClickLogo.bind(this);
-  }
-
-  handleClickLogo() {
+  handleClickLogo = () => {
     this.props.redirectTo('/');
-  }
+  };
 
-  handleClickLogout() {
+  handleClickLogout = () => {
     this.props.logout();
-  }
+  };
+
+  handleClickUsername = () => {
+    this.props.redirectTo('/manage');
+  };
 
   render() {
     const { isAuthorized, username } = this.props;
@@ -31,7 +29,12 @@ class Header extends React.Component {
         <div className={styles.right}>
           {isAuthorized ? (
             <div>
-              <div className={styles.username}>{username}</div>
+              <div
+                className={styles.username}
+                onClick={this.handleClickUsername}
+              >
+                {username}
+              </div>
               <div className={styles.logout} onClick={this.handleClickLogout}>
                 Logout
               </div>

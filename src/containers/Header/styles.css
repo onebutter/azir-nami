@@ -19,6 +19,7 @@
 
 .username {
   font-weight: 700;
+  cursor: pointer;
 }
 
 .logo {
