@@ -20,7 +20,7 @@ class Manage extends React.Component {
 
   render() {
     const { status, entities, username } = this.props;
-    if (!status.success) {
+    if (!status.success || !entities) {
       return <div>loading...</div>;
     }
 
@@ -48,7 +48,11 @@ class Manage extends React.Component {
             render={() => <Link to="/manage/add">Add</Link>}
           />
         </div>
-        <div className={styles.namecards}>{namecardComponents}</div>
+        {entities.length > 0 ? (
+          <div className={styles.namecards}>{namecardComponents}</div>
+        ) : (
+          <div>You have no namecard yet!</div>
+        )}
       </div>
     );
   }

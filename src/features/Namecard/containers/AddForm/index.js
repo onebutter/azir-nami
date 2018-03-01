@@ -187,7 +187,7 @@ class AddForm extends React.Component {
           </form>
         </div>
         <div>
-          <Link to="/namecard">Cancel</Link>
+          <Link to="/manage">Cancel</Link>
         </div>
       </div>
     );
