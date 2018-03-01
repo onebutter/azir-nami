@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './styles.css';
-import Namecard from 'Features/Namecard';
+import DefaultNamecard from 'Features/Namecard/containers/Default';
 
 const NamecardView = ({ computedMatch }) => (
   <div className={styles.root}>
-    <Namecard computedMatch={computedMatch} />
+    <DefaultNamecard computedMatch={computedMatch} />
   </div>
 );
 
