@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { push } from 'react-router-redux';
 import clone from 'lodash/fp/cloneDeep';
 import { createNamecardRequest } from '../../actions';
 import Namecard from '../../components/Namecard';
@@ -78,6 +79,11 @@ class AddForm extends React.Component {
     });
   };
 
+  handleCancel = e => {
+    e.preventDefault();
+    this.props.redirectTo('/manage');
+  };
+
   addService = () => {
     this.setState({
       sCounter: this.state.sCounter + 1
@@ -104,17 +110,10 @@ class AddForm extends React.Component {
           />
         </div>
         <div className={styles.formDiv}>
-          <form className={styles.form} onSubmit={this.handleSubmit}>
+          <form className={styles.form}>
             <div className={styles.row}>
-              <input
-                className={styles.tag}
-                name="tag"
-                type="text"
-                value={tag}
-                onChange={this.handleChange}
-                placeholder="tag of this namecard"
-              />
               <select
+                className={styles.privacySelect}
                 value={privacy}
                 onChange={this.handleChange}
                 name="privacy"
@@ -124,33 +123,14 @@ class AddForm extends React.Component {
                 <option value="private">private</option>
                 <option value="secret">secret</option>
               </select>
-            </div>
-            <div className={styles.row}>
               <input
-                className={styles.serviceType}
-                name="services"
+                className={styles.tag}
+                name="tag"
                 type="text"
-                value={normalize(services, sCounter, 'type')}
-                onChange={this.handleArrayChange}
-                placeholder="service type"
-                data-key="type"
+                value={tag}
+                onChange={this.handleChange}
+                placeholder="tag of this namecard"
               />
-              <input
-                className={styles.serviceValue}
-                name="services"
-                type="text"
-                value={normalize(services, sCounter, 'value')}
-                onChange={this.handleArrayChange}
-                placeholder="service value"
-                data-key="value"
-              />
-              <button
-                className={styles.addServiceButton}
-                type="button"
-                onClick={this.addService}
-              >
-                Add Service
-              </button>
             </div>
             <div className={styles.row}>
               <input
@@ -176,18 +156,53 @@ class AddForm extends React.Component {
                 type="button"
                 onClick={this.addAlias}
               >
-                Add Alias
+                +
               </button>
             </div>
             <div className={styles.row}>
-              <button className={styles.submitButton} type="submit">
+              <input
+                className={styles.serviceType}
+                name="services"
+                type="text"
+                value={normalize(services, sCounter, 'type')}
+                onChange={this.handleArrayChange}
+                placeholder="service type"
+                data-key="type"
+              />
+              <input
+                className={styles.serviceValue}
+                name="services"
+                type="text"
+                value={normalize(services, sCounter, 'value')}
+                onChange={this.handleArrayChange}
+                placeholder="service value"
+                data-key="value"
+              />
+              <button
+                className={styles.addServiceButton}
+                type="button"
+                onClick={this.addService}
+              >
+                +
+              </button>
+            </div>
+            <div className={styles.controlRow}>
+              <button
+                className={styles.submitButton}
+                type="button"
+                onClick={this.handleSubmit}
+              >
                 Submit
+              </button>
+              <button
+                className={styles.cancelButton}
+                type="button"
+                onClick={this.handleCancel}
+              >
+                Cancel
               </button>
             </div>
           </form>
-        </div>
-        <div>
-          <Link to="/manage">Cancel</Link>
         </div>
       </div>
     );
@@ -208,7 +223,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  create: bindActionCreators(createNamecardRequest, dispatch)
+  create: bindActionCreators(createNamecardRequest, dispatch),
+  redirectTo: bindActionCreators(push, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddForm);

@@ -1,0 +1,86 @@
+
+.root {
+  margin-bottom: 2rem;
+}
+
+.formDiv {
+  margin-top: 1rem;
+}
+
+.row {
+  margin-bottom: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type=text] {
+  background-color: transparent;
+  border: 0;
+  border-bottom: aliceblue 1px solid;
+  color: aliceblue;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+}
+
+input[type=text]:focus {
+  border-bottom: yellowgreen 1px solid;
+}
+
+select.privacySelect {
+  width: 28%;
+  background-color: transparent;
+  border-color: aliceblue;
+  color: aliceblue;
+}
+
+select.privacySelect:focus {
+  border-color: yellowgreen;
+}
+
+.serviceType, .aliasType {
+  width: 28%;
+}
+
+.serviceValue, .aliasValue {
+  width: 58%;
+}
+
+.addServiceButton, .addAliasButton {
+  width: 8%;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 900;
+  background-color: aliceblue;
+}
+
+.addServiceButton:hover, .addAliasButton:hover {
+  background-color: aquamarine;
+}
+
+.controlRow {
+  margin-top: 0.4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitButton {
+  font-weight: bold;
+  background-color: rgb(123, 210, 196);
+  padding: 0.5rem 1rem;
+  border-radius: 0.1rem;
+  margin-right: 0.3rem;
+  border: 0;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: rgb(88, 196, 131);
+}
+
+.cancelButton {
+  background-color: rgb(207, 206, 201);
+  padding: 0.5rem 1rem;
+  border-radius: 0.1rem;
+  border: 0;
+  cursor: pointer;
+}
