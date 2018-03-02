@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Route, withRouter } from 'react-router';
+import Loading from 'Containers/Loading';
 import { loadNamecardRequest } from '../../actions';
 import Namecard from '../../components/Namecard';
 import AddForm from '../AddForm';
@@ -19,7 +20,7 @@ class Manage extends React.Component {
     const { status, entities } = this.props;
     const flattenEntities = _.flatMapDeep(entities);
     if (!status.success || !entities) {
-      return <div>loading...</div>;
+      return <Loading />;
     }
 
     const namecardComponents = flattenEntities.map(

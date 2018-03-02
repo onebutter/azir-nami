@@ -1,4 +1,13 @@
 .root {
   background-color: aliceblue;
   padding: 0.5rem;
+  border-radius: 1px;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row-reverse;
+  color: #171E27;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
 }

@@ -23,10 +23,10 @@ const namecards = (state = {}, action) => {
           if (!acc[v.privacy]) {
             acc[v.privacy] = [];
           }
-          acc[v.privacy] = [...acc[v.privacy], v];
+          acc[v.privacy].push(v);
           return acc;
         },
-        state
+        {}
       );
     }
     default:
