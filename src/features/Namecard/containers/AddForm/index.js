@@ -1,7 +1,6 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import clone from 'lodash/fp/cloneDeep';
 import { createNamecardRequest } from '../../actions';
