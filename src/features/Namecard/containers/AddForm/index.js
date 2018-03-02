@@ -98,16 +98,10 @@ class AddForm extends React.Component {
   render() {
     const { tag, services, aliases, privacy, sCounter, aCounter } = this.state;
     const { username } = this.props;
+    const shouldRenderNamecard =
+      tag.length + services.length + aliases.length > 0;
     return (
       <div className={styles.root}>
-        <div className={styles.namecard}>
-          <Namecard
-            tag={tag}
-            services={services}
-            aliases={aliases}
-            username={username}
-          />
-        </div>
         <div className={styles.formDiv}>
           <form className={styles.form}>
             <div className={styles.row}>
@@ -203,6 +197,16 @@ class AddForm extends React.Component {
             </div>
           </form>
         </div>
+        {shouldRenderNamecard &&
+          <div className={styles.namecard}>
+            <Namecard
+              tag={tag}
+              services={services}
+              aliases={aliases}
+              username={username}
+            />
+          </div>
+        }
       </div>
     );
   }
