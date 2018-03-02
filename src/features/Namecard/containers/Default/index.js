@@ -17,20 +17,13 @@ class DefaultNamecardContainer extends Component {
     const { status, entity } = this.props;
     const { username } = this.props.computedMatch.params;
     if (status.success && entity) {
-      const { id, tag, services, aliases, privacy } = entity;
+      const { id, tag, services, aliases } = entity;
       const namecardComponent = (
-        <Namecard
-          key={id}
-          tag={tag}
-          privacy={privacy}
-          services={services}
-          aliases={aliases}
-          username={username}
-        />
+        <Namecard key={id} tag={tag} services={services} aliases={aliases} />
       );
       return (
         <div className={styles.root}>
-          <h3>{username}</h3>
+          <div className={styles.username}>@{username}</div>
           <div>{namecardComponent}</div>
         </div>
       );

@@ -1,6 +1,9 @@
 .root {
-  padding: 1rem;
-  border-radius: 2px;
-  background: #e8e2cb;
-  width: 100%;
+  width: 98vw;
+}
+
+.username {
+  font-size: 3rem;
+  color: aliceblue;
+  margin-bottom: 1rem;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,31 +10,21 @@ import AddForm from '../AddForm';
 import styles from './styles.css';
 
 class Manage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     const { load, username } = this.props;
     load(username);
   }
 
   render() {
-    const { status, entities, username } = this.props;
+    const { status, entities } = this.props;
+    const flattenEntities = _.flatMapDeep(entities);
     if (!status.success || !entities) {
       return <div>loading...</div>;
     }
 
-    const namecardComponents = entities.map(
-      ({ id, tag, services, aliases, privacy }) => (
-        <Namecard
-          key={id}
-          tag={tag}
-          privacy={privacy}
-          services={services}
-          aliases={aliases}
-          username={username}
-        />
+    const namecardComponents = flattenEntities.map(
+      ({ id, tag, services, aliases }) => (
+        <Namecard key={id} tag={tag} services={services} aliases={aliases} />
       )
     );
     return (
@@ -48,7 +39,7 @@ class Manage extends React.Component {
             render={() => <Link to="/manage/add">Add</Link>}
           />
         </div>
-        {entities.length > 0 ? (
+        {flattenEntities.length > 0 ? (
           <div className={styles.namecards}>{namecardComponents}</div>
         ) : (
           <div>You have no namecard yet!</div>
