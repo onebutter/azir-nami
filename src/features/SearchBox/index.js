@@ -11,19 +11,26 @@ class SearchBox extends React.Component {
     this.setState({ username: e.target.value });
   };
 
-  handleClick = () => {
+  handleSubmit = e => {
+    e.preventDefault();
     this.props.navigate(`/${this.state.username}`);
   };
 
   render() {
     return (
       <div className={styles.root}>
-        <input
-          onChange={this.handleChange}
-          type="text"
-          value={this.state.username}
-        />
-        <button onClick={this.handleClick}>go</button>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
+          <input
+            className={styles.username}
+            onChange={this.handleChange}
+            type="text"
+            placeholder="username?"
+            value={this.state.username}
+          />
+          <button className={styles.navigate} type="submit">
+            go
+          </button>
+        </form>
       </div>
     );
   }

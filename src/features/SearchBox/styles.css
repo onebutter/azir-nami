@@ -1,0 +1,33 @@
+.root {
+  width: 50vw;
+  max-width: 30rem;
+}
+
+input[type=text].username {
+  width: 90%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: aliceblue 1px solid;
+  color: aliceblue;
+  padding: 0.3rem 0;
+  font-size: 0.8rem;
+  &:focus {
+    border-bottom: yellowgreen 1px solid;
+  }
+}
+
+.navigate {
+  width: 10%;
+  border: 0;
+  background-color: aliceblue;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 0.3rem 0;
+  cursor: pointer;
+}
+
+.navigate:hover {
+  background-color: yellowgreen;
+}
+
+
