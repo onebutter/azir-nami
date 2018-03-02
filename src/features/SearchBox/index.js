@@ -5,20 +5,15 @@ import { connect } from 'react-redux';
 import styles from './styles.css';
 
 class SearchBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { username: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  state = { username: '' };
 
-  handleChange(e) {
+  handleChange = e => {
     this.setState({ username: e.target.value });
-  }
+  };
 
-  handleClick() {
+  handleClick = () => {
     this.props.navigate(`/${this.state.username}`);
-  }
+  };
 
   render() {
     return (
