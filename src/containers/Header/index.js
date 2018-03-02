@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { push } from 'react-router-redux';
 import { logoutRequest } from 'Features/Auth/actions';
 import styles from './styles.css';
 
 class Header extends React.Component {
   handleClickLogo = () => {
-    this.props.redirectTo('/');
+    if (this.props.location.pathname !== '/') {
+      this.props.redirectTo('/');
+    }
   };
 
   handleClickLogout = () => {
@@ -58,4 +60,6 @@ const mapDistpatchToProps = dispatch => ({
   redirectTo: bindActionCreators(push, dispatch)
 });
 
-export default connect(mapStateToProps, mapDistpatchToProps)(Header);
+export default withRouter(
+  connect(mapStateToProps, mapDistpatchToProps)(Header)
+);

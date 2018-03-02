@@ -13,7 +13,9 @@ class SearchBox extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.navigate(`/${this.state.username}`);
+    if (this.state.username.length) {
+      this.props.navigate(`/${this.state.username}`);
+    }
   };
 
   render() {
