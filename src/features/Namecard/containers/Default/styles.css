@@ -1,5 +1,6 @@
 .root {
   width: 98vw;
+  max-width: 30rem;
 }
 
 .username {
