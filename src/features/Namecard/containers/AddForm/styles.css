@@ -5,6 +5,7 @@
 
 .formDiv {
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .row {
@@ -13,17 +14,20 @@
   justify-content: space-between;
 }
 
-input[type=text] {
+input[type=text].tag,
+input[type=text].serviceType,
+input[type=text].aliasType,
+input[type=text].serviceValue,
+input[type=text].aliasValue {
   background-color: transparent;
   border: 0;
   border-bottom: aliceblue 1px solid;
   color: aliceblue;
   padding: 0.3rem 0;
   font-size: 0.8rem;
-}
-
-input[type=text]:focus {
-  border-bottom: yellowgreen 1px solid;
+  &:focus {
+    border-bottom: yellowgreen 1px solid;
+  }
 }
 
 select.privacySelect {
