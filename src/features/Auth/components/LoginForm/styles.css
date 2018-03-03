@@ -6,18 +6,6 @@
   justify-content: center;
 }
 
-input {
-  font-family: 'Assisstant', sans-serif;
-}
-
-input:focus {
-  outline: none;
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #c5c1c1 inset;
-}
-
 .title {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;

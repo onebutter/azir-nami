@@ -8,12 +8,18 @@ const Namecard = ({ tag, services, aliases }) => {
     <div className={styles.root}>
       <div className={styles.tag}>{tag}</div>
       <div className={styles.card}>
-        <div className={styles.aliases}>
-          {aliases && <Aliases content={aliases} />}
-        </div>
-        <div className={styles.services}>
-          {services && <Services content={services} />}
-        </div>
+        {aliases &&
+          aliases.length && (
+            <div className={styles.aliases}>
+              <Aliases content={aliases} />
+            </div>
+          )}
+        {services &&
+          services.length && (
+            <div className={styles.services}>
+              <Services content={services} />
+            </div>
+          )}
       </div>
     </div>
   );
