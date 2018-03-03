@@ -18,7 +18,9 @@ class Header extends React.Component {
   };
 
   handleClickUsername = () => {
-    this.props.redirectTo('/manage');
+    if (!this.props.location.pathname.startsWith('/manage')) {
+      this.props.redirectTo('/manage');
+    }
   };
 
   render() {

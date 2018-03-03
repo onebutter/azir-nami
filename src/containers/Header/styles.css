@@ -21,6 +21,9 @@
 .username {
   font-weight: 700;
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .logo {
@@ -33,4 +36,7 @@
   cursor: pointer;
   background-color: white;
   float: right;
+  &:hover {
+    text-decoration: underline;
+  }
 }
