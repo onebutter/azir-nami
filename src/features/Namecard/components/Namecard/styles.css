@@ -1,5 +1,5 @@
 .card {
-  background-color: aliceblue;
+  background-color: var(--color-fg);
   padding: 0.5rem;
   border-radius: 1px;
   margin-bottom: 0.7rem;

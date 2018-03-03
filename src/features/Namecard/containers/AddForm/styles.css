@@ -21,8 +21,8 @@ input[type=text].serviceValue,
 input[type=text].aliasValue {
   background-color: transparent;
   border: 0;
-  border-bottom: aliceblue 1px solid;
-  color: aliceblue;
+  border-bottom: var(--color-fg) 1px solid;
+  color: var(--color-fg);
   padding: 0.3rem 0;
   font-size: 0.8rem;
   &:focus {
@@ -30,8 +30,8 @@ input[type=text].aliasValue {
     outline: none;
   }
   &:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #171e27 inset;
-    -webkit-text-fill-color: aliceblue !important;
+    -webkit-box-shadow: 0 0 0 30px var(--color-bg) inset;
+    -webkit-text-fill-color: var(--color-fg) !important;
   }
 }
 
@@ -39,8 +39,8 @@ input[type=text].aliasValue {
 select.privacySelect {
   width: 28%;
   background-color: transparent;
-  border-color: aliceblue;
-  color: aliceblue;
+  border-color: var(--color-fg);
+  color: var(--color-fg);
 }
 
 select.privacySelect:focus {
@@ -60,7 +60,7 @@ select.privacySelect:focus {
   border: 0;
   font-size: 1rem;
   font-weight: 900;
-  background-color: aliceblue;
+  background-color: var(--color-fg);
 }
 
 .addServiceButton:hover, .addAliasButton:hover {
