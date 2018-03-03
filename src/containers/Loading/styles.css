@@ -1,4 +1,8 @@
 .root {
   font-size: 5rem;
-  color: aliceblue;
+  color: var(--color-fg);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
