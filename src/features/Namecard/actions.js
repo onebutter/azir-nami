@@ -32,6 +32,7 @@ export const createNamecardRequest = payload => ({
 
 export const createNamecardSuccess = payload => ({
   type: NAMECARD_CREATE_SUCCESS,
+  meta: { requestingUser: true },
   payload
 });
 

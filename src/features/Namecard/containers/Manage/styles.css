@@ -7,15 +7,15 @@
   margin-top: 1rem;
   font-size: 0.7rem;
   & > a {
-    border: 1px solid var(--color-bg);
+    border: 1px solid #171e27;
     padding: 0.4rem 0.8rem;
     border-radius: 0.3rem;
     font-size: 1.3rem;
-    color: var(--color-bg);
+    color: aliceblue;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
-      color: var(--color-bg);
+      color: white;
     }
   }
 }

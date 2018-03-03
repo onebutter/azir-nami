@@ -3,15 +3,12 @@
   @custom-media --sm-viewport only screen and (min-width: 768px);
   @custom-media --md-viewport only screen and (min-width: 1024px);
   @custom-media --lg-viewport only screen and (min-width: 1224px);
-
-  --color-bg: #171E27;
-  --color-fg: #F0F8FF;
 }
 
 html, body {
   margin:0;
   padding:0;
-  color: var(--color-fg);
+  color: aliceblue;
 }
 
 html {
@@ -32,6 +29,6 @@ html {
 }
 
 body {
-  background-color: var(--color-bg);
+  background-color: #171e27;
   font-family: 'Assistant', sans-serif;
 }

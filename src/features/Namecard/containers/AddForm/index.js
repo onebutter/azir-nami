@@ -113,8 +113,8 @@ class AddForm extends React.Component {
               >
                 <option value="default">default</option>
                 <option value="public">public</option>
-                <option value="private">private</option>
-                <option value="secret">secret</option>
+                {/* <option value="private">private</option>
+                <option value="secret">secret</option> */}
               </select>
               <input
                 className={styles.tag}

@@ -5,17 +5,27 @@ import * as actions from './actions';
 const {
   NAMECARD_LOAD_REQUEST,
   NAMECARD_LOAD_SUCCESS,
-  NAMECARD_LOAD_ERROR
+  NAMECARD_LOAD_ERROR,
+  NAMECARD_CREATE_REQUEST,
+  NAMECARD_CREATE_SUCCESS,
+  NAMECARD_CREATE_ERROR
 } = actions;
 
 const status = createStatus({
-  request: [NAMECARD_LOAD_REQUEST],
-  success: [NAMECARD_LOAD_SUCCESS],
-  error: [NAMECARD_LOAD_ERROR]
+  request: [NAMECARD_LOAD_REQUEST, NAMECARD_CREATE_REQUEST],
+  success: [NAMECARD_LOAD_SUCCESS, NAMECARD_CREATE_SUCCESS],
+  error: [NAMECARD_LOAD_ERROR, NAMECARD_CREATE_ERROR]
 });
 
 const namecards = (state = {}, action) => {
   switch (action.type) {
+    case NAMECARD_CREATE_SUCCESS: {
+      const { privacy } = action.payload;
+      return {
+        ...state,
+        [privacy]: [...state[privacy], action.payload]
+      };
+    }
     case NAMECARD_LOAD_SUCCESS: {
       return _.reduce(
         action.data,
@@ -37,6 +47,13 @@ const namecards = (state = {}, action) => {
 const entitiesInitial = {};
 const entities = (state = entitiesInitial, action) => {
   switch (action.type) {
+    case NAMECARD_CREATE_SUCCESS: {
+      state = {
+        ...state,
+        [action.meta.username]: namecards(state[action.meta.username], action)
+      };
+      return state;
+    }
     case NAMECARD_LOAD_SUCCESS:
       state = {
         ...state,
@@ -52,8 +69,11 @@ const error = (state = {}, action) => {
   switch (action.type) {
     case NAMECARD_LOAD_REQUEST:
     case NAMECARD_LOAD_SUCCESS:
+    case NAMECARD_CREATE_REQUEST:
+    case NAMECARD_CREATE_SUCCESS:
       return {};
     case NAMECARD_LOAD_ERROR:
+    case NAMECARD_CREATE_ERROR:
       return { ...action.error };
     default:
       return state;

@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { logoutRequest } from '../../actions';
 
 export default function createAuthorizationMiddleware() {
@@ -11,13 +12,36 @@ export default function createAuthorizationMiddleware() {
       return next(action);
     }
 
-    if (action.meta && action.meta.authorization) {
+    if (action.meta) {
       const state = store.getState();
-      const { token, isAuthorized } = state.auth.access;
-      if (isAuthorized && token) {
-        const newAction = { ...action, meta: { ...action.meta, token } };
-        return next(newAction);
+      const { auth } = state;
+      if (!auth) {
+        return next(action);
       }
+      const { isAuthorized } = state.auth.access;
+      let newAction = { ...action };
+      if (action.meta.authorization) {
+        const { token } = state.auth.access;
+        if (isAuthorized) {
+          if (token) {
+            _.set(newAction, 'meta.token', token);
+          } else {
+            _.set(newAction, 'meta.token', null);
+          }
+        }
+      }
+
+      if (action.meta.requestingUser) {
+        const { username } = state.auth.user;
+        if (isAuthorized) {
+          if (username) {
+            _.set(newAction, 'meta.username', username);
+          } else {
+            _.set(newAction, 'meta.username', null);
+          }
+        }
+      }
+      return next(newAction);
     }
     next(action);
   };
