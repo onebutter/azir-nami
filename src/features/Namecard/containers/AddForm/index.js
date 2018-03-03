@@ -197,7 +197,7 @@ class AddForm extends React.Component {
             </div>
           </form>
         </div>
-        {shouldRenderNamecard &&
+        {shouldRenderNamecard && (
           <div className={styles.namecard}>
             <Namecard
               tag={tag}
@@ -206,7 +206,7 @@ class AddForm extends React.Component {
               username={username}
             />
           </div>
-        }
+        )}
       </div>
     );
   }
