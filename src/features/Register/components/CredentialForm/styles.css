@@ -19,26 +19,44 @@
     min-width: 15rem;
   }
   padding: 0;
-  background-color: #c5c1c1;
 }
+
 
 .username {
   margin-bottom: 1rem;
-  background-color: #c5c1c1;
+  background-color: transparent;
   border: 0;
   border-radius: 0;
-  border-bottom: 1px solid rgb(60, 60, 60);
+  border-bottom: 1px solid aliceblue;
   padding: 0.5rem;
   font-size: 1rem;
+  color: aliceblue;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #171e27 inset;
+    -webkit-text-fill-color: aliceblue !important;
+  }
 }
 
 .password {
-  background-color: #c5c1c1;
+  background-color: transparent;
   border: 0;
   border-radius: 0;
-  border-bottom: 1px solid rgb(60, 60, 60);
+  border-bottom: 1px solid aliceblue;
   padding: 0.5rem;
   font-size: 1rem;
+  color: aliceblue;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #171e27 inset;
+    -webkit-text-fill-color: aliceblue !important;
+  }
 }
 
 .submitButton {
@@ -52,9 +70,21 @@
   cursor: pointer;
   background-color: #e8e8e8;
   font-size: 0.8rem;
+  &:hover {
+    background-color: #a8a8a8;
+  }
 }
 
 .linkLogin {
   margin-top: 1rem;
   font-size: 0.7rem;
+  & > a {
+    font-size: 1rem;
+    color: aliceblue;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      color: white;
+    }
+  }
 }

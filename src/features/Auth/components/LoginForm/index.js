@@ -3,28 +3,23 @@ import { Link } from 'react-router-dom';
 import styles from './styles.css';
 
 class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    username: '',
+    password: ''
+  };
 
-  handleChange(e) {
+  handleChange = e => {
     const { value, name } = e.target;
     this.setState({
       [name]: value
     });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     const { submit } = this.props;
     submit(this.state);
-  }
+  };
 
   render() {
     return (

@@ -27,8 +27,14 @@ input[type=text].aliasValue {
   font-size: 0.8rem;
   &:focus {
     border-bottom: yellowgreen 1px solid;
+    outline: none;
+  }
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #171e27 inset;
+    -webkit-text-fill-color: aliceblue !important;
   }
 }
+
 
 select.privacySelect {
   width: 28%;
