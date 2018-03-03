@@ -1,4 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import { getNamecards_Q_username, postNamecards } from './services';
 import * as actions from './actions';
 
@@ -27,6 +28,7 @@ export function* createNamecard(action) {
   try {
     const data = yield call(postNamecards, action.meta.token, action.payload);
     yield put(actions.createNamecardSuccess(data));
+    yield put(push('/manage'));
   } catch (error) {
     yield put(actions.createNamecardError(error));
   }
