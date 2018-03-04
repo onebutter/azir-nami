@@ -21,10 +21,15 @@ const namecards = (state = {}, action) => {
   switch (action.type) {
     case NAMECARD_CREATE_SUCCESS: {
       const { privacy } = action.payload;
-      return {
-        ...state,
-        [privacy]: [...state[privacy], action.payload]
+      let newState = {
+        ...state
       };
+      if (newState[privacy]) {
+        newState[privacy] = [...state[privacy], action.payload];
+      } else {
+        newState[privacy] = [action.payload];
+      }
+      return newState;
     }
     case NAMECARD_LOAD_SUCCESS: {
       return _.reduce(
@@ -48,9 +53,10 @@ const entitiesInitial = {};
 const entities = (state = entitiesInitial, action) => {
   switch (action.type) {
     case NAMECARD_CREATE_SUCCESS: {
+      const { username } = action.meta.user;
       state = {
         ...state,
-        [action.meta.username]: namecards(state[action.meta.username], action)
+        [username]: namecards(state[username], action)
       };
       return state;
     }

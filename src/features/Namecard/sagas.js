@@ -1,6 +1,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { getNamecards_Q_username, postNamecards } from './services';
+import {
+  getNamecards_Q_username,
+  getNamecards_Q_userid,
+  postNamecards
+} from './services';
 import * as actions from './actions';
 
 export function* watchNamecardLoadRequest() {
@@ -9,12 +13,21 @@ export function* watchNamecardLoadRequest() {
 
 export function* loadNamecard(action) {
   try {
-    const data = yield call(
-      getNamecards_Q_username,
-      action.meta.token,
-      action.username
-    );
-    yield put(actions.loadNamecardSuccess(action.username, data));
+    if (action.meta.requestingUser) {
+      const data = yield call(
+        getNamecards_Q_userid,
+        action.meta.token,
+        action.meta.user.id
+      );
+      yield put(actions.loadNamecardSuccess(action.meta.user.username, data));
+    } else {
+      const data = yield call(
+        getNamecards_Q_username,
+        action.meta.token,
+        action.username
+      );
+      yield put(actions.loadNamecardSuccess(action.username, data));
+    }
   } catch (error) {
     yield put(actions.loadNamecardError(action.username, error));
   }

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { logoutRequest } from '../../actions';
+import { logoutRequest } from '../actions';
 
 export default function createAuthorizationMiddleware() {
   return store => next => action => {
@@ -32,12 +32,12 @@ export default function createAuthorizationMiddleware() {
       }
 
       if (action.meta.requestingUser) {
-        const { username } = state.auth.user;
+        const { user } = state.auth;
         if (isAuthorized) {
-          if (username) {
-            _.set(newAction, 'meta.username', username);
+          if (user) {
+            _.set(newAction, 'meta.user', user);
           } else {
-            _.set(newAction, 'meta.username', null);
+            _.set(newAction, 'meta.user', null);
           }
         }
       }

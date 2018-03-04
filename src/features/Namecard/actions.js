@@ -6,9 +6,9 @@ export const NAMECARD_CREATE_REQUEST = 'NAMECARD_CREATE_REQUEST';
 export const NAMECARD_CREATE_SUCCESS = 'NAMECARD_CREATE_SUCCESS';
 export const NAMECARD_CREATE_ERROR = 'NAMECARD_CREATE_ERROR';
 
-export const loadNamecardRequest = username => ({
+export const loadNamecardRequest = (username, meta = {}) => ({
   type: NAMECARD_LOAD_REQUEST,
-  meta: { authorization: true },
+  meta: { authorization: true, ...meta },
   username
 });
 

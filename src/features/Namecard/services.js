@@ -10,6 +10,15 @@ export const getNamecards_Q_username = (token, username) => {
   return request(uri, payload);
 };
 
+export const getNamecards_Q_userid = (token, userid) => {
+  const payload = {
+    ...defaultOptions('GET', { token })
+  };
+
+  const uri = `${config.api.url}/namecards?userid=${userid}`;
+  return request(uri, payload);
+};
+
 export const postNamecards = (token, body) => {
   const payload = {
     ...defaultOptions('POST', { token }),
