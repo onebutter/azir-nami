@@ -21,7 +21,7 @@ class DefaultNamecardContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  entity: _.get(state, `namecard.entities.${props.username}.default[0]`, [])
+  entity: _.get(state, `namecard.entities.${props.username}.default[0]`, {})
 });
 
 export default connect(mapStateToProps, null)(DefaultNamecardContainer);

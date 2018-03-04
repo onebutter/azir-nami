@@ -1,10 +1,12 @@
 import React from 'react';
+import _ from 'lodash';
 import { Route, withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { loadNamecardRequest } from 'Features/Namecard/actions';
 import styles from './styles.css';
 import DefaultNamecard from 'Features/Namecard/containers/Default';
 import ErrorUserNotFound from '../../components/ErrorUserNotFound';
+import { isNamecardExist } from '../../utils';
 import Loading from 'Containers/Loading';
 
 class MainProfile extends React.Component {
@@ -14,15 +16,29 @@ class MainProfile extends React.Component {
   }
 
   render() {
-    const { status, username } = this.props;
+    const { status, username, counts } = this.props;
     if (status.success) {
+      const noNamecard = !isNamecardExist(counts);
+      if (noNamecard) {
+        return (
+          <div className={styles.root}>
+            <div className={styles.profile}>@{username} has no namecard</div>
+          </div>
+        );
+      }
+
       return (
         <div className={styles.root}>
-          <Route
-            exact
-            path="/:username"
-            render={() => <DefaultNamecard username={username} />}
-          />
+          <div className={styles.profile}>@{username}</div>
+
+          <div className={styles.namecard}>
+            <Route
+              exact
+              path="/:username"
+              render={() => <DefaultNamecard username={username} />}
+            />
+          </div>
+          <div className={styles.privacyBar}> put them privacy bar here </div>
         </div>
       );
     }
@@ -47,9 +63,25 @@ const mapDispatchToProps = {
   load: loadNamecardRequest
 };
 
-const mapStateToProps = state => ({
-  status: state.namecard.status
-});
+const mapStateToProps = (state, props) => {
+  const counts = _.reduce(
+    _.get(state, `namecard.entities.${props.username}`),
+    (acc, v, k) => {
+      acc[k] += v.length;
+      return acc;
+    },
+    {
+      public: 0,
+      private: 0,
+      secret: 0,
+      default: 0
+    }
+  );
+  return {
+    status: state.namecard.status,
+    counts
+  };
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(MainProfile)

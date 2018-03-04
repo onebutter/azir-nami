@@ -2,4 +2,14 @@
 .root {
   width: 98vw;
   max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile {
+  font-size: 2.3rem;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
 }
