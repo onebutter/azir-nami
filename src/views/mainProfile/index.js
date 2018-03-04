@@ -1,14 +1,13 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import styles from './styles.css';
-import DefaultNamecard from 'Features/Namecard/containers/Default';
+import Curator from 'Features/Curator';
 
 class MainProfileView extends React.Component {
-
   render() {
     return (
       <div className={styles.root}>
-        <DefaultNamecard username={this.props.computedMatch.params.username} />
+        <Curator.Main username={this.props.computedMatch.params.username} />
       </div>
     );
   }
