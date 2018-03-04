@@ -12,8 +12,8 @@ import styles from './styles.css';
 
 class Manage extends React.Component {
   componentDidMount() {
-    const { load, username } = this.props;
-    load(username, { requestingUser: true });
+    const { load } = this.props;
+    load();
   }
 
   render() {
