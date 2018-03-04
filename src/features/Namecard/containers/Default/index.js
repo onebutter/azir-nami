@@ -8,14 +8,8 @@ import Namecard from '../../components/Namecard';
 import ErrorUserNotFound from '../../components/ErrorUserNotFound';
 
 class DefaultNamecardContainer extends Component {
-  componentDidMount() {
-    const { username } = this.props.computedMatch.params;
-    this.props.load(username);
-  }
-
   render() {
-    const { status, entity } = this.props;
-    const { username } = this.props.computedMatch.params;
+    const { username, status, entity } = this.props;
     if (status.success && entity) {
       const { id, tag, services, aliases } = entity;
       const namecardComponent = (
@@ -23,7 +17,6 @@ class DefaultNamecardContainer extends Component {
       );
       return (
         <div className={styles.root}>
-          <div className={styles.username}>@{username}</div>
           <div>{namecardComponent}</div>
         </div>
       );
@@ -45,10 +38,9 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state, props) => {
-  const { username } = props.computedMatch.params;
   return {
     status: state.namecard.status,
-    entity: _.get(state, `namecard.entities.${username}.default[0]`, [])
+    entity: _.get(state, `namecard.entities.${props.username}.default[0]`, [])
   };
 };
 
