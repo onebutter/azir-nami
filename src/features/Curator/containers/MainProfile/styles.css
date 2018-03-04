@@ -13,3 +13,7 @@
   align-self: flex-start;
   margin-bottom: 0.5rem;
 }
+
+.namecard {
+  width: 100%;
+}
