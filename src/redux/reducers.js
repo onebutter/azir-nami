@@ -9,8 +9,7 @@ import { persistReducer } from 'redux-persist';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  blacklist: ['status', 'error'],
-  debug: true
+  blacklist: ['status', 'error']
 };
 
 const rootReducer = combineReducers({

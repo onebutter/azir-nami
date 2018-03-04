@@ -19,19 +19,26 @@ class Login extends Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-    if (this.props.isAuthorized) {
+    const { isAuthorized, error, status } = this.props;
+    if (isAuthorized) {
       return <Redirect to={from} />;
     }
     return (
       <div className={styles.root}>
-        <LoginForm submit={this.handleSubmit.bind(null, from.pathname)} />
+        <LoginForm
+          submit={this.handleSubmit.bind(null, from.pathname)}
+          status={status}
+          error={error}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthorized: state.auth.access.isAuthorized
+  isAuthorized: state.auth.access.isAuthorized,
+  status: state.auth.status,
+  error: state.auth.error
 });
 
 const mapDisptchToProps = dispatch => ({
