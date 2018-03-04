@@ -17,3 +17,9 @@
 .namecard {
   width: 100%;
 }
+
+.privacyBar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

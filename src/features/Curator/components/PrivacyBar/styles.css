@@ -1,0 +1,25 @@
+.root {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 1rem;
+  border: 1px solid aliceblue;
+}
+
+.navlink {
+  width: 50%;
+  padding: 0.2rem 0;
+  background-color: transparent;
+  text-align: center;
+  color: #f0f8ff;
+  text-decoration: none;
+  &:hover {
+    background-color: #b3b3ff;
+    border-radius: 1rem;
+  }
+}
+.active {
+  border-radius: 1rem;
+  background-color: aliceblue !important;
+  color: #171e27;
+}

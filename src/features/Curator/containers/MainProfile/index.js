@@ -7,6 +7,7 @@ import styles from './styles.css';
 import DefaultNamecard from 'Features/Namecard/containers/Default';
 import PublicNamecard from 'Features/Namecard/containers/Public';
 import ErrorUserNotFound from '../../components/ErrorUserNotFound';
+import PrivacyBar from '../../components/PrivacyBar';
 import { isNamecardExist } from '../../utils';
 import Loading from 'Containers/Loading';
 
@@ -54,7 +55,9 @@ class MainProfile extends React.Component {
               }}
             />
           </div>
-          <div className={styles.privacyBar}> put them privacy bar here </div>
+          <div className={styles.privacyBar}>
+            <PrivacyBar username={username} />
+          </div>
         </div>
       );
     }
