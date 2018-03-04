@@ -1,24 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { persistStore, persistCombineReducers } from 'redux-persist';
-import storage from 'redux-persist/es/storage';
+import { persistStore } from 'redux-persist';
 import { routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxReset from 'redux-reset';
 import sagas from './sagas';
 import createTokenMiddleware from 'Features/Auth/utils/tokenMiddleware';
-import { createReducers } from './reducers';
+import reducers from './reducers';
 
-const reducers = createReducers();
 const sagaMiddleware = createSagaMiddleware();
-
-const persistReducerConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['auth']
-};
-
-const persistedReducer = persistCombineReducers(persistReducerConfig, reducers);
 
 const configureStore = ({ history }) => {
   const middlewares = [
@@ -32,7 +22,7 @@ const configureStore = ({ history }) => {
     composeWithDevTools(applyMiddleware(...middlewares))
   )(createStore);
 
-  const store = enhancedCreateStore(persistedReducer);
+  const store = enhancedCreateStore(reducers);
   const persistor = persistStore(store);
   sagaMiddleware.run(sagas);
 
