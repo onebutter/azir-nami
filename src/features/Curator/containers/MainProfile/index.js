@@ -1,10 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
-import { Route, withRouter } from 'react-router';
+import { Route, withRouter, Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { loadNamecardRequest } from 'Features/Namecard/actions';
 import styles from './styles.css';
 import DefaultNamecard from 'Features/Namecard/containers/Default';
+import PublicNamecard from 'Features/Namecard/containers/Public';
 import ErrorUserNotFound from '../../components/ErrorUserNotFound';
 import { isNamecardExist } from '../../utils';
 import Loading from 'Containers/Loading';
@@ -36,6 +37,21 @@ class MainProfile extends React.Component {
               exact
               path="/:username"
               render={() => <DefaultNamecard username={username} />}
+            />
+            <Route
+              exact
+              path="/:username/:privacy"
+              render={props => {
+                const { privacy, username } = props.match.params;
+                switch (privacy) {
+                  case 'default':
+                    return <DefaultNamecard username={username} />;
+                  case 'public':
+                    return <PublicNamecard username={username} />;
+                  default:
+                    return <Redirect to={`/${username}`} />;
+                }
+              }}
             />
           </div>
           <div className={styles.privacyBar}> put them privacy bar here </div>
