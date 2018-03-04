@@ -13,7 +13,7 @@ class PrivacyBar extends React.Component {
           to={`/${username}`}
           activeClassName={styles.active}
         >
-          {username}
+          @{username}
         </NavLink>
         <NavLink
           className={styles.navlink}

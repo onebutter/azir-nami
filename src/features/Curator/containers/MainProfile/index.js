@@ -31,7 +31,9 @@ class MainProfile extends React.Component {
 
       return (
         <div className={styles.root}>
-          <div className={styles.profile}>@{username}</div>
+          <div className={styles.privacyBar}>
+            <PrivacyBar username={username} />
+          </div>
 
           <div className={styles.namecard}>
             <Route
@@ -54,9 +56,6 @@ class MainProfile extends React.Component {
                 }
               }}
             />
-          </div>
-          <div className={styles.privacyBar}>
-            <PrivacyBar username={username} />
           </div>
         </div>
       );

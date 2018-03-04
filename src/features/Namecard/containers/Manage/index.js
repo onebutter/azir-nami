@@ -24,8 +24,14 @@ class Manage extends React.Component {
     }
 
     const namecardComponents = flattenEntities.map(
-      ({ id, tag, services, aliases }) => (
-        <Namecard key={id} tag={tag} services={services} aliases={aliases} />
+      ({ id, tag, services, aliases, privacy }) => (
+        <Namecard
+          key={id}
+          tag={tag}
+          services={services}
+          aliases={aliases}
+          privacy={privacy}
+        />
       )
     );
     return (

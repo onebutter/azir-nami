@@ -2,6 +2,7 @@
 .root {
   width: 98vw;
   max-width: 30rem;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,4 +23,5 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-bottom: 0.5rem;
 }

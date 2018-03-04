@@ -1,12 +1,17 @@
 import React from 'react';
+import classNames from 'classnames';
 import Aliases from '../Aliases';
 import Services from '../Services';
 import styles from './styles.css';
 
-const Namecard = ({ tag, services, aliases }) => {
+const Namecard = ({ tag, services, aliases, privacy }) => {
+  const privacyClassNames = classNames(styles.privacy, styles[privacy]);
   return (
     <div className={styles.root}>
-      <div className={styles.tag}>{tag}</div>
+      <div className={styles.title}>
+        <div className={styles.tag}>{tag}</div>
+        {privacy && <div className={privacyClassNames}>{privacy}</div>}
+      </div>
       <div className={styles.card}>
         {aliases &&
           aliases.length && (
