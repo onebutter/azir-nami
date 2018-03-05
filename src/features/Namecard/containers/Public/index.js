@@ -9,7 +9,7 @@ import Namecard from '../../components/Namecard';
 class PublicNamecardsContainer extends React.Component {
   render() {
     const { entities } = this.props;
-    const temp = entities.map(entity => {
+    const temp = _.map(entities, entity => {
       const { id, tag, services, aliases } = entity;
       return (
         <div key={id}>

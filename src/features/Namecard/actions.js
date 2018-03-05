@@ -6,6 +6,10 @@ export const NAMECARD_CREATE_REQUEST = 'NAMECARD_CREATE_REQUEST';
 export const NAMECARD_CREATE_SUCCESS = 'NAMECARD_CREATE_SUCCESS';
 export const NAMECARD_CREATE_ERROR = 'NAMECARD_CREATE_ERROR';
 
+export const NAMECARD_DELETE_REQUEST = 'NAMECARD_DELETE_REQUEST';
+export const NAMECARD_DELETE_SUCCESS = 'NAMECARD_DELETE_SUCCESS';
+export const NAMECARD_DELETE_ERROR = 'NAMECARD_DELETE_ERROR';
+
 export const loadNamecardRequest = (username = null) => ({
   type: NAMECARD_LOAD_REQUEST,
   meta: { authorization: true, requestingUser: true },
@@ -37,6 +41,23 @@ export const createNamecardSuccess = payload => ({
 });
 
 export const createNamecardError = error => ({
+  type: NAMECARD_CREATE_ERROR,
+  error
+});
+
+export const deleteNamecardRequest = id => ({
+  type: NAMECARD_DELETE_REQUEST,
+  meta: { authorization: true, requestingUser: true },
+  id
+});
+
+export const deleteNamecardSuccess = payload => ({
+  type: NAMECARD_DELETE_SUCCESS,
+  meta: { requestingUser: true },
+  payload
+});
+
+export const deleteNamecardError = error => ({
   type: NAMECARD_CREATE_ERROR,
   error
 });

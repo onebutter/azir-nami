@@ -37,3 +37,9 @@ export const postNamecards = (token, body) => {
   const uri = `${config.api.url}/namecards`;
   return request(uri, payload);
 };
+
+export const deleteNamecards = (token, id) => {
+  const payload = defaultOptions('DELETE', { token });
+  const uri = `${config.api.url}/namecards/${id}`;
+  return request(uri, payload);
+};

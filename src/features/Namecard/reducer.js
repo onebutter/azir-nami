@@ -25,9 +25,14 @@ const namecards = (state = {}, action) => {
         ...state
       };
       if (newState[privacy]) {
-        newState[privacy] = [...state[privacy], action.payload];
+        newState[privacy] = {
+          ...state[privacy],
+          [action.payload.id]: action.payload
+        };
       } else {
-        newState[privacy] = [action.payload];
+        newState[privacy] = {
+          [action.payload.id]: action.payload
+        };
       }
       return newState;
     }
@@ -36,9 +41,9 @@ const namecards = (state = {}, action) => {
         action.data,
         (acc, v) => {
           if (!acc[v.privacy]) {
-            acc[v.privacy] = [];
+            acc[v.privacy] = {};
           }
-          acc[v.privacy].push(v);
+          acc[v.privacy][v.id] = v;
           return acc;
         },
         {}

@@ -11,7 +11,7 @@ export function* watchNamecardLoadRequest() {
   yield takeLatest(actions.NAMECARD_LOAD_REQUEST, loadNamecard);
 }
 
-export function* loadNamecard(action) {
+function* loadNamecard(action) {
   try {
     if (!action.username) {
       const data = yield call(getNamecards, action.meta.token);
@@ -33,7 +33,7 @@ export function* watchNamecardCreateRequest() {
   yield takeLatest(actions.NAMECARD_CREATE_REQUEST, createNamecard);
 }
 
-export function* createNamecard(action) {
+function* createNamecard(action) {
   try {
     const data = yield call(postNamecards, action.meta.token, action.payload);
     yield put(actions.createNamecardSuccess(data));

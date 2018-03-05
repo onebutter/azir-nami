@@ -18,10 +18,17 @@ class Manage extends React.Component {
 
   render() {
     const { status, entities } = this.props;
-    const flattenEntities = _.flatMapDeep(entities);
     if (!status.success || !entities) {
       return <Loading />;
     }
+
+    const flattenEntities = _.reduce(
+      entities,
+      (acc, v) => {
+        return _.concat(acc, _.toArray(v));
+      },
+      []
+    );
 
     const namecardComponents = flattenEntities.map(
       ({ id, tag, services, aliases, privacy }) => (
