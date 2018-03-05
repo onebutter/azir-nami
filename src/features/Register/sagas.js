@@ -9,7 +9,7 @@ export function* register(action) {
     yield put(actions.submitCredentialSuccess());
     yield put(authActions.loginRequest(action.credentials, '/'));
   } catch (error) {
-    yield put(actions.submitCredentialError(error));
+    yield put(actions.submitCredentialError(error.response));
   }
 }
 

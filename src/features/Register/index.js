@@ -8,13 +8,13 @@ import styles from './styles.css';
 
 class RegisterContainer extends Component {
   render() {
-    const { isAuthorized, submit } = this.props;
+    const { isAuthorized, submit, error } = this.props;
     if (isAuthorized) {
       return <Redirect to="/" />;
     }
     return (
       <div className={styles.root}>
-        <CredentialForm submit={submit} />
+        <CredentialForm submit={submit} error={error} />
       </div>
     );
   }
@@ -25,7 +25,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  isAuthorized: state.auth.access.isAuthorized
+  isAuthorized: state.auth.access.isAuthorized,
+  error: state.register.error
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

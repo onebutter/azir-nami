@@ -16,13 +16,12 @@ export const defaultOptions = (method, options = {}) => {
   };
 };
 
-const checkStatus = res => {
+const checkStatus = async res => {
   if (res.status >= 200 && res.status < 300) return res;
   const error = new Error(res.statusText);
   error.status = res.status;
-  res.json().then(errorData => {
-    error.response = errorData;
-  });
+  const errorData = await res.json();
+  error.response = errorData;
   throw error;
 };
 

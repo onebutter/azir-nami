@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import classnames from 'classnames';
 import styles from './styles.css';
 
 class LoginForm extends React.Component {
   state = {
     username: '',
     password: '',
-    pristine: true,
     submitted: false,
     submittedUsername: ''
   };
@@ -19,7 +17,6 @@ class LoginForm extends React.Component {
       submitted: false
     });
   };
-
   handleSubmit = e => {
     e.preventDefault();
     const { submit } = this.props;

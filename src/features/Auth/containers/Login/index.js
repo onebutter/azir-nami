@@ -19,7 +19,7 @@ class Login extends Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { isAuthorized, error, status } = this.props;
+    const { isAuthorized, error } = this.props;
     if (isAuthorized) {
       return <Redirect to={from} />;
     }
@@ -27,7 +27,6 @@ class Login extends Component {
       <div className={styles.root}>
         <LoginForm
           submit={this.handleSubmit.bind(null, from.pathname)}
-          status={status}
           error={error}
         />
       </div>
