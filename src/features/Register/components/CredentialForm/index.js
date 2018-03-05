@@ -63,6 +63,8 @@ class CredentialForm extends React.Component {
             className={usernameStyle}
             name="username"
             type="text"
+            autoCorrect="off"
+            autoCapitalize="none"
             value={this.state.username}
             onChange={this.handleChange}
             placeholder="username"

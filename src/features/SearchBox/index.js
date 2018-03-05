@@ -26,6 +26,8 @@ class SearchBox extends React.Component {
             className={styles.username}
             onChange={this.handleChange}
             type="text"
+            autoCorrect="off"
+            autoCapitalize="none"
             placeholder="username?"
             value={this.state.username}
           />

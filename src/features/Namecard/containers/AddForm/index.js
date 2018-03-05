@@ -120,6 +120,8 @@ class AddForm extends React.Component {
                 className={styles.tag}
                 name="tag"
                 type="text"
+                autoCorrect="off"
+                autoCapitalize="none"
                 value={tag}
                 onChange={this.handleChange}
                 placeholder="tag of this namecard"
@@ -130,6 +132,8 @@ class AddForm extends React.Component {
                 className={styles.aliasType}
                 name="aliases"
                 type="text"
+                autoCorrect="off"
+                autoCapitalize="none"
                 value={normalize(aliases, aCounter, 'type')}
                 onChange={this.handleArrayChange}
                 placeholder="alias type"
@@ -139,6 +143,8 @@ class AddForm extends React.Component {
                 className={styles.aliasValue}
                 name="aliases"
                 type="text"
+                autoCorrect="off"
+                autoCapitalize="none"
                 value={normalize(aliases, aCounter, 'value')}
                 onChange={this.handleArrayChange}
                 placeholder="alias value"
@@ -157,6 +163,8 @@ class AddForm extends React.Component {
                 className={styles.serviceType}
                 name="services"
                 type="text"
+                autoCorrect="off"
+                autoCapitalize="none"
                 value={normalize(services, sCounter, 'type')}
                 onChange={this.handleArrayChange}
                 placeholder="service type"
@@ -166,6 +174,8 @@ class AddForm extends React.Component {
                 className={styles.serviceValue}
                 name="services"
                 type="text"
+                autoCorrect="off"
+                autoCapitalize="none"
                 value={normalize(services, sCounter, 'value')}
                 onChange={this.handleArrayChange}
                 placeholder="service value"
