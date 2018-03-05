@@ -62,7 +62,7 @@ module.exports = {
       Features: path.join(process.cwd(), 'src', 'features'),
       Utils: path.join(process.cwd(), 'src', 'utils'),
       Containers: path.join(process.cwd(), 'src', 'containers'),
-      config: path.join(process.cwd(), 'src', 'config')
+      config: path.join(process.cwd(), 'src', 'config', 'development')
     }
   },
   devtool: 'eval-source-map',

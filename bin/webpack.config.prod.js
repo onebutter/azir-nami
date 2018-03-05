@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
@@ -28,13 +27,6 @@ module.exports = {
       sourceMap: true,
       screw_ie8: true,
       warnings: false
-    }),
-    new CompressionPlugin({
-      asset: '[path]',
-      algorithm: 'gzip',
-      test: /\.js$/,
-      threshhold: 0,
-      minRatio: 0.8
     })
   ],
   module: {
@@ -81,7 +73,7 @@ module.exports = {
       Features: path.join(process.cwd(), 'src', 'features'),
       Utils: path.join(process.cwd(), 'src', 'utils'),
       Containers: path.join(process.cwd(), 'src', 'containers'),
-      config: path.join(process.cwd(), 'src', 'config')
+      config: path.join(process.cwd(), 'src', 'config', 'production')
     }
   }
 };
