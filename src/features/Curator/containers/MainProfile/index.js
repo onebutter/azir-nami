@@ -85,7 +85,7 @@ const mapStateToProps = (state, props) => {
   const counts = _.reduce(
     _.get(state, `namecard.entities.${props.username}`),
     (acc, v, k) => {
-      acc[k] += v.length;
+      acc[k] += Object.keys(v).length;
       return acc;
     },
     {

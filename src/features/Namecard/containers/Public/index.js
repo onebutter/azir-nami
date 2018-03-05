@@ -17,7 +17,7 @@ class PublicNamecardsContainer extends React.Component {
         </div>
       );
     });
-    if (entities.length) {
+    if (!_.isEmpty(entities)) {
       return (
         <div className={styles.root}>
           <Carousel arrows={false} infinite={false}>
@@ -31,7 +31,7 @@ class PublicNamecardsContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  entities: _.get(state, `namecard.entities.${props.username}.public`, [])
+  entities: _.get(state, `namecard.entities.${props.username}.public`, {})
 });
 
 export default connect(mapStateToProps, null)(PublicNamecardsContainer);

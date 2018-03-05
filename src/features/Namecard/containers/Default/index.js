@@ -7,7 +7,7 @@ import Namecard from '../../components/Namecard';
 
 class DefaultNamecardContainer extends React.Component {
   render() {
-    const { entity } = this.props;
+    const entity = this.props.entity[Object.keys(this.props.entity)[0]];
     if (entity) {
       const { id, tag, services, aliases } = entity;
       return (
@@ -21,7 +21,7 @@ class DefaultNamecardContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  entity: _.get(state, `namecard.entities.${props.username}.default[0]`, {})
+  entity: _.get(state, `namecard.entities.${props.username}.default`, {})
 });
 
 export default connect(mapStateToProps, null)(DefaultNamecardContainer);
