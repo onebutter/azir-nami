@@ -45,7 +45,9 @@ class CredentialForm extends React.Component {
     const { code, message } = this.props.error;
     const { username, password, submitted, submittedUsername } = this.state;
     const usernameErrorMsg =
-      (code === 'USERNAME_INVALID_LENGTH' || code === 'USERNAME_BAD') &&
+      (code === 'USER_EXISTS' ||
+        code === 'USERNAME_INVALID_LENGTH' ||
+        code === 'USERNAME_BAD') &&
       submittedUsername === username
         ? message
         : submitted && username.length === 0 ? `Type your username` : null;
