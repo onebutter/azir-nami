@@ -29,3 +29,11 @@
 .default {
   color: aliceblue;
 }
+
+.deleteIcon {
+  cursor: pointer;
+  float: right;
+  &:hover {
+    color: silver;
+  }
+}

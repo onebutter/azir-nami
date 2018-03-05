@@ -4,11 +4,17 @@ import Aliases from '../Aliases';
 import Services from '../Services';
 import styles from './styles.css';
 
-const Namecard = ({ tag, services, aliases, privacy }) => {
+const Namecard = ({ id, tag, services, aliases, privacy, onDelete }) => {
   const privacyClassNames = classNames(styles.privacy, styles[privacy]);
+  const deleteIcon = (
+    <div className={styles.deleteIcon} onClick={() => onDelete(id)}>
+      X
+    </div>
+  );
   return (
     <div className={styles.root}>
       <div className={styles.title}>
+        {onDelete && deleteIcon}
         <div className={styles.tag}>{tag}</div>
         {privacy && <div className={privacyClassNames}>{privacy}</div>}
       </div>

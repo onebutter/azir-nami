@@ -3,7 +3,8 @@ import { push } from 'react-router-redux';
 import {
   getNamecards_Q_username,
   getNamecards,
-  postNamecards
+  postNamecards,
+  deleteNamecards
 } from './services';
 import * as actions from './actions';
 
@@ -39,8 +40,27 @@ function* createNamecard(action) {
     yield put(actions.createNamecardSuccess(data));
     yield put(push('/manage'));
   } catch (error) {
-    yield put(actions.createNamecardError(error));
+    yield put(actions.createNamecardError(error.response));
   }
 }
 
-export default [watchNamecardLoadRequest(), watchNamecardCreateRequest()];
+export function* watchNamecardDeleteRequest() {
+  yield takeLatest(actions.NAMECARD_DELETE_REQUEST, deleteNamecard);
+}
+
+function* deleteNamecard(action) {
+  try {
+    const { id, meta } = action;
+    const data = yield call(deleteNamecards, meta.token, id);
+    yield put(actions.deleteNamecardSuccess(data));
+    yield put(push('/manage'));
+  } catch (error) {
+    yield put(actions.deleteNamecardError(error.response));
+  }
+}
+
+export default [
+  watchNamecardLoadRequest(),
+  watchNamecardCreateRequest(),
+  watchNamecardDeleteRequest()
+];

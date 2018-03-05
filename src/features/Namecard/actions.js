@@ -58,6 +58,6 @@ export const deleteNamecardSuccess = payload => ({
 });
 
 export const deleteNamecardError = error => ({
-  type: NAMECARD_CREATE_ERROR,
+  type: NAMECARD_DELETE_ERROR,
   error
 });

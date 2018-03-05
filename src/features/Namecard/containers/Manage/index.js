@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Route, withRouter } from 'react-router';
 import Loading from 'Containers/Loading';
 import { loadNamecardRequest } from '../../actions';
-import Namecard from '../../components/Namecard';
+import DeletableNamecard from '../DeletableNamecard';
 import AddForm from '../AddForm';
 import styles from './styles.css';
 
@@ -17,7 +17,7 @@ class Manage extends React.Component {
   }
 
   render() {
-    const { status, entities } = this.props;
+    const { status, entities, username } = this.props;
     if (!status.success || !entities) {
       return <Loading />;
     }
@@ -30,17 +30,14 @@ class Manage extends React.Component {
       []
     );
 
-    const namecardComponents = flattenEntities.map(
-      ({ id, tag, services, aliases, privacy }) => (
-        <Namecard
-          key={id}
-          tag={tag}
-          services={services}
-          aliases={aliases}
-          privacy={privacy}
-        />
-      )
-    );
+    const namecardComponents = flattenEntities.map(({ id, privacy }) => (
+      <DeletableNamecard
+        key={id}
+        id={id}
+        username={username}
+        privacy={privacy}
+      />
+    ));
     return (
       <div className={styles.root}>
         <div className={styles.addNamecard}>
