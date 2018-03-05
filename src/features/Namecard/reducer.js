@@ -8,7 +8,10 @@ const {
   NAMECARD_LOAD_ERROR,
   NAMECARD_CREATE_REQUEST,
   NAMECARD_CREATE_SUCCESS,
-  NAMECARD_CREATE_ERROR
+  NAMECARD_CREATE_ERROR,
+  NAMECARD_DELETE_REQUEST,
+  NAMECARD_DELETE_SUCCESS,
+  NAMECARD_DELETE_ERROR
 } = actions;
 
 const status = createStatus({
@@ -17,7 +20,7 @@ const status = createStatus({
   error: [NAMECARD_LOAD_ERROR, NAMECARD_CREATE_ERROR]
 });
 
-const namecards = (state = {}, action) => {
+const byName = (state = {}, action) => {
   switch (action.type) {
     case NAMECARD_CREATE_SUCCESS: {
       const { privacy } = action.payload;
@@ -49,6 +52,20 @@ const namecards = (state = {}, action) => {
         {}
       );
     }
+    case NAMECARD_DELETE_SUCCESS: {
+      return _.reduce(
+        state,
+        (acc, v, k) => {
+          if (k !== action.payload.privacy) {
+            acc[k] = v;
+          } else {
+            acc[k] = _.omit(v, action.payload.id.toString());
+          }
+          return acc;
+        },
+        {}
+      );
+    }
     default:
       return state;
   }
@@ -61,16 +78,24 @@ const entities = (state = entitiesInitial, action) => {
       const { username } = action.meta.user;
       state = {
         ...state,
-        [username]: namecards(state[username], action)
+        [username]: byName(state[username], action)
       };
       return state;
     }
     case NAMECARD_LOAD_SUCCESS:
       state = {
         ...state,
-        [action.username]: namecards(state[action.username], action)
+        [action.username]: byName(state[action.username], action)
       };
       return state;
+    case NAMECARD_DELETE_SUCCESS: {
+      const { username } = action.meta.user;
+      state = {
+        ...state,
+        [username]: byName(state[username], action)
+      };
+      return state;
+    }
     default:
       return state;
   }
@@ -82,9 +107,12 @@ const error = (state = {}, action) => {
     case NAMECARD_LOAD_SUCCESS:
     case NAMECARD_CREATE_REQUEST:
     case NAMECARD_CREATE_SUCCESS:
+    case NAMECARD_DELETE_REQUEST:
+    case NAMECARD_DELETE_SUCCESS:
       return {};
     case NAMECARD_LOAD_ERROR:
     case NAMECARD_CREATE_ERROR:
+    case NAMECARD_DELETE_ERROR:
       return { ...action.error };
     default:
       return state;
