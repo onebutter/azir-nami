@@ -81,7 +81,9 @@ class CredentialForm extends React.Component {
             placeholder="password"
           />
           <div className={styles.passwordError}>{passwordErrorMsg}</div>
-          <input className={styles.submitButton} type="submit" value="Submit" />
+          <button className={styles.submitButton} type="submit">
+            Submit
+          </button>
         </form>
         <div className={styles.linkLogin}>
           <Link to="/login">Login</Link>
