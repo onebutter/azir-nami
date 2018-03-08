@@ -1,0 +1,17 @@
+
+
+.qrcodeBlock {
+  position: absolute;
+  background: black;
+  padding: 3rem;
+  margin-left: 8rem;
+  margin-top: 2rem;
+}
+
+/* .qrcode {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+} */
+
