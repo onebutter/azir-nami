@@ -3,11 +3,7 @@ import { logoutRequest } from '../actions';
 
 export default function createAuthorizationMiddleware() {
   return store => next => action => {
-    if (
-      action.error &&
-      action.error.response &&
-      action.error.response.status === 401
-    ) {
+    if (action.error && action.error.status && action.error.status === 401) {
       store.dispatch(logoutRequest());
       return next(action);
     }
