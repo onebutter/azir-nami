@@ -97,7 +97,7 @@ class AddForm extends React.Component {
 
   render() {
     const { tag, services, aliases, privacy, sCounter, aCounter } = this.state;
-    const { username } = this.props;
+    const { username, error } = this.props;
     const shouldRenderNamecard =
       tag.length + services.length + aliases.length > 0;
     return (
@@ -190,20 +190,23 @@ class AddForm extends React.Component {
               </button>
             </div>
             <div className={styles.controlRow}>
-              <button
-                className={styles.submitButton}
-                type="button"
-                onClick={this.handleSubmit}
-              >
-                Submit
-              </button>
-              <button
-                className={styles.cancelButton}
-                type="button"
-                onClick={this.handleCancel}
-              >
-                Cancel
-              </button>
+              {error && <div className={styles.errorMsg}>{error.message}</div>}
+              <div className={styles.buttons}>
+                <button
+                  className={styles.submitButton}
+                  type="button"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </button>
+                <button
+                  className={styles.cancelButton}
+                  type="button"
+                  onClick={this.handleCancel}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -230,8 +233,10 @@ const normalize = (arr, counter, key) => {
 
 const mapStateToProps = state => {
   const { username } = state.auth.user;
+  const { error } = state.namecard;
   return {
-    username
+    username,
+    error
   };
 };
 

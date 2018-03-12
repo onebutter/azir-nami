@@ -18,7 +18,7 @@ class Manage extends React.Component {
 
   render() {
     const { status, entities, username } = this.props;
-    if (!status.success || !entities) {
+    if (status.request || !entities) {
       return <Loading />;
     }
 

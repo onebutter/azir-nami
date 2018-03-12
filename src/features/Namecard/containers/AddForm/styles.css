@@ -71,7 +71,11 @@ select.privacySelect:focus {
 .controlRow {
   margin-top: 0.4rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.errorMsg {
+  color: #ffac2f;
 }
 
 .submitButton {
