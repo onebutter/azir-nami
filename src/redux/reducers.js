@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import namecard from 'Features/Namecard/reducer';
 import register from 'Features/Register/reducer';
 import auth from 'Features/Auth/reducer';
+import extService from 'Features/ExtService/reducer';
 import storage from 'redux-persist/es/storage';
 import { persistReducer } from 'redux-persist';
 
@@ -12,10 +13,17 @@ const authPersistConfig = {
   blacklist: ['status', 'error']
 };
 
+const extServicePersistConfig = {
+  key: 'extService',
+  storage,
+  whitelist: ['requested']
+};
+
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, auth),
   namecard,
   register,
+  extService: persistReducer(extServicePersistConfig, extService),
   router: routerReducer
 });
 

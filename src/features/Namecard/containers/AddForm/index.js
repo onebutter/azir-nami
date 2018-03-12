@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import clone from 'lodash/fp/cloneDeep';
+import DiscordExtService from 'Features/ExtService';
 import { createNamecardRequest } from '../../actions';
 import Namecard from '../../components/Namecard';
 import styles from './styles.css';
@@ -93,6 +94,12 @@ class AddForm extends React.Component {
     this.setState({
       aCounter: this.state.aCounter + 1
     });
+  };
+
+  addExtService = extService => {
+    this.setState(state => ({
+      services: [...state.services, extService]
+    }));
   };
 
   render() {
@@ -210,6 +217,7 @@ class AddForm extends React.Component {
             </div>
           </form>
         </div>
+        <DiscordExtService onSuccess={this.addExtService} />
         {shouldRenderNamecard && (
           <div className={styles.namecard}>
             <Namecard
