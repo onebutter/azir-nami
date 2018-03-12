@@ -38,7 +38,7 @@ const mapStateToProps = state => {
   return {
     status: state.extService.status,
     requested: state.extService.requested,
-    entity: state.extService.discord
+    entity: state.extService.entities.discord
   };
 };
 
