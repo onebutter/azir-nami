@@ -1,6 +1,7 @@
 export default {
   api: {
     discord: {
+      url: 'https://discordapp.com/api',
       authorizeURL: 'https://discordapp.com/api/oauth2/authorize',
       tokenURL: 'https://discordapp.com/api/oauth2/token',
       revokeURL: 'https://discordapp.com/api/oauth2/revoke',

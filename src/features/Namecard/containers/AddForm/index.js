@@ -97,8 +97,13 @@ class AddForm extends React.Component {
   };
 
   addExtService = extService => {
+    const type = Object.keys(extService)[0];
+    const newService = {
+      type,
+      value: extService[type]
+    };
     this.setState(state => ({
-      services: [...state.services, extService]
+      services: [...state.services, newService]
     }));
   };
 

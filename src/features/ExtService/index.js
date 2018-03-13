@@ -21,12 +21,18 @@ class DiscordExtService extends React.Component {
     const { requested } = this.props;
     if (search.startsWith('?code=') && requested === 'discord') {
       const code = search.split('=')[1];
-      this.props.parseCodeDiscord(code);
+      const { pathname, origin } = window.location;
+      const codeConsumedUrl = origin + pathname;
+      this.props.parseCodeDiscord(code, codeConsumedUrl);
+      this.props.redirect(pathname);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-
+    const { entity } = nextProps;
+    if (entity && entity.length > 0) {
+      this.props.onSuccess({ discord: entity });
+    }
   }
 
   render() {
