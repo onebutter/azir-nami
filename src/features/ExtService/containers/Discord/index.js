@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import { push } from 'react-router-redux';
-import { discordCodeRequest, discordCodeSucess } from './actions';
+import { discordCodeRequest, discordCodeSucess } from '../../actions';
+import styles from './styles.css';
+import logo from './logo.png';
 
 class DiscordExtService extends React.Component {
   handleClick = () => {
@@ -36,7 +38,11 @@ class DiscordExtService extends React.Component {
   }
 
   render() {
-    return <button onClick={this.handleClick}>Discord</button>;
+    return (
+      <div className={styles.root} onClick={this.handleClick}>
+        <img className={styles.logo} src={logo} />
+      </div>
+    );
   }
 }
 

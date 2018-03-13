@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import clone from 'lodash/fp/cloneDeep';
-import DiscordExtService from 'Features/ExtService';
+import ExternalServices from 'Features/ExtService/containers/Services';
+import DiscordExtService from 'Features/ExtService/containers/Discord';
 import { createNamecardRequest } from '../../actions';
 import Namecard from '../../components/Namecard';
 import styles from './styles.css';
@@ -102,9 +103,12 @@ class AddForm extends React.Component {
       type,
       value: extService[type]
     };
-    this.setState(state => ({
-      services: [...state.services, newService]
-    }));
+    this.setState(
+      state => ({
+        services: [...state.services, newService]
+      }),
+      this.addService
+    );
   };
 
   render() {
@@ -201,6 +205,11 @@ class AddForm extends React.Component {
                 +
               </button>
             </div>
+            <div className={styles.row}>
+              <ExternalServices>
+                <DiscordExtService onSuccess={this.addExtService} />
+              </ExternalServices>
+            </div>
             <div className={styles.controlRow}>
               {error && <div className={styles.errorMsg}>{error.message}</div>}
               <div className={styles.buttons}>
@@ -222,7 +231,6 @@ class AddForm extends React.Component {
             </div>
           </form>
         </div>
-        <DiscordExtService onSuccess={this.addExtService} />
         {shouldRenderNamecard && (
           <div className={styles.namecard}>
             <Namecard
