@@ -11,7 +11,6 @@ import styles from './styles.css';
 
 class AddForm extends React.Component {
   state = {
-    tag: '',
     privacy: 'public',
     aliases: [],
     aCounter: 0,
@@ -71,9 +70,8 @@ class AddForm extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { tag, privacy, services, aliases } = this.state;
+    const { privacy, services, aliases } = this.state;
     this.props.create({
-      tag,
       privacy,
       services,
       aliases
@@ -112,10 +110,9 @@ class AddForm extends React.Component {
   };
 
   render() {
-    const { tag, services, aliases, privacy, sCounter, aCounter } = this.state;
+    const { services, aliases, privacy, sCounter, aCounter } = this.state;
     const { username, error } = this.props;
-    const shouldRenderNamecard =
-      tag.length + services.length + aliases.length > 0;
+    const shouldRenderNamecard = services.length + aliases.length > 0;
     return (
       <div className={styles.root}>
         <div className={styles.formDiv}>
@@ -132,16 +129,6 @@ class AddForm extends React.Component {
                 {/* <option value="private">private</option>
                 <option value="secret">secret</option> */}
               </select>
-              <input
-                className={styles.tag}
-                name="tag"
-                type="text"
-                autoCorrect="off"
-                autoCapitalize="none"
-                value={tag}
-                onChange={this.handleChange}
-                placeholder="tag of this namecard"
-              />
             </div>
             <div className={styles.row}>
               <input
@@ -234,7 +221,6 @@ class AddForm extends React.Component {
         {shouldRenderNamecard && (
           <div className={styles.namecard}>
             <Namecard
-              tag={tag}
               services={services}
               aliases={aliases}
               username={username}

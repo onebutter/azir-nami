@@ -20,7 +20,7 @@ class DefaultNamecardContainer extends React.Component {
   render() {
     const entity = this.props.entity[Object.keys(this.props.entity)[0]];
     if (entity) {
-      const { id, tag, services, aliases } = entity;
+      const { id, services, aliases } = entity;
       return (
         <div className={styles.root}>
           <QRCodeWrapper
@@ -30,12 +30,7 @@ class DefaultNamecardContainer extends React.Component {
             showOverlay={this.state.isShowingQRCode}
             onClick={this.onClickQRCode}
           >
-            <Namecard
-              key={id}
-              tag={tag}
-              services={services}
-              aliases={aliases}
-            />
+            <Namecard key={id} services={services} aliases={aliases} />
             <div
               className={styles.qrtemp}
               onClick={this.state.isShowingQRCode ? null : this.onClickQRCode}

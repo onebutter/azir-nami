@@ -4,7 +4,7 @@ import Aliases from '../Aliases';
 import Services from '../Services';
 import styles from './styles.css';
 
-const Namecard = ({ id, tag, services, aliases, privacy, onDelete }) => {
+const Namecard = ({ id, services, aliases, privacy, onDelete }) => {
   const privacyClassNames = classNames(styles.privacy, styles[privacy]);
   const deleteIcon = (
     <div className={styles.deleteIcon} onClick={() => onDelete(id)}>
@@ -15,7 +15,6 @@ const Namecard = ({ id, tag, services, aliases, privacy, onDelete }) => {
     <div className={styles.root}>
       <div className={styles.title}>
         {onDelete && deleteIcon}
-        <div className={styles.tag}>{tag}</div>
         {privacy && <div className={privacyClassNames}>{privacy}</div>}
       </div>
       <div className={styles.card}>
