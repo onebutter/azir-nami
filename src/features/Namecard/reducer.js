@@ -27,6 +27,13 @@ const byName = (state = {}, action) => {
       let newState = {
         ...state
       };
+
+      if (privacy === 'default') {
+        _.forEach(state.default, v => (v.privacy = 'public'));
+        _.merge(newState.public, state.default);
+        delete newState.default;
+      }
+
       if (newState[privacy]) {
         newState[privacy] = {
           ...state[privacy],
