@@ -10,6 +10,13 @@ import DeletableNamecard from '../DeletableNamecard';
 import AddForm from '../AddForm';
 import styles from './styles.css';
 
+const sortValueMapping = {
+  default: -4,
+  public: -3,
+  private: -2,
+  secret: -1
+};
+
 class Manage extends React.Component {
   componentDidMount() {
     const { load } = this.props;
@@ -28,7 +35,7 @@ class Manage extends React.Component {
         return _.concat(acc, _.toArray(v));
       },
       []
-    );
+    ).sort((a, b) => sortValueMapping[a.privacy] - sortValueMapping[b.privacy]);
 
     const namecardComponents = flattenEntities.map(({ id, privacy }) => (
       <DeletableNamecard
