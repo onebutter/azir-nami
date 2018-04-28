@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 import clone from 'lodash/fp/cloneDeep';
 import ExternalServices from 'Features/ExtService/containers/Services';
 import DiscordExtService from 'Features/ExtService/containers/Discord';
+import GithubExtService from 'Features/ExtService/containers/Github';
 import { createNamecardRequest } from '../../actions';
 import Namecard from '../../components/Namecard';
 import styles from './styles.css';
@@ -195,6 +196,7 @@ class AddForm extends React.Component {
             <div className={styles.row}>
               <ExternalServices>
                 <DiscordExtService onSuccess={this.addExtService} />
+                <GithubExtService onSuccess={this.addExtService} />
               </ExternalServices>
             </div>
             <div className={styles.controlRow}>
