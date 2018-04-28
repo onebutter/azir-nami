@@ -15,71 +15,36 @@ const {
 } = actions;
 
 const status = createStatus({
-  request: [NAMECARD_LOAD_REQUEST, NAMECARD_CREATE_REQUEST],
-  success: [NAMECARD_LOAD_SUCCESS, NAMECARD_CREATE_SUCCESS],
-  error: [NAMECARD_LOAD_ERROR, NAMECARD_CREATE_ERROR]
+  request: [
+    NAMECARD_LOAD_REQUEST,
+    NAMECARD_CREATE_REQUEST,
+    NAMECARD_DELETE_REQUEST
+  ],
+  success: [
+    NAMECARD_LOAD_SUCCESS,
+    NAMECARD_CREATE_SUCCESS,
+    NAMECARD_DELETE_SUCCESS
+  ],
+  error: [NAMECARD_LOAD_ERROR, NAMECARD_CREATE_ERROR, NAMECARD_DELETE_ERROR]
 });
 
-const byName = (state = {}, action) => {
+const byName = (state = [], action) => {
   switch (action.type) {
     case NAMECARD_CREATE_SUCCESS: {
-      const { privacy } = action.payload;
-      let newState = {
-        ...state
-      };
-
-      if (privacy === 'default') {
-        _.forEach(state.default, v => (v.privacy = 'public'));
-        _.merge(newState.public, state.default);
-        delete newState.default;
-      }
-
-      if (newState[privacy]) {
-        newState[privacy] = {
-          ...state[privacy],
-          [action.payload.id]: action.payload
-        };
-      } else {
-        newState[privacy] = {
-          [action.payload.id]: action.payload
-        };
-      }
-      return newState;
+      return [...state, action.payload];
     }
     case NAMECARD_LOAD_SUCCESS: {
-      return _.reduce(
-        action.data,
-        (acc, v) => {
-          if (!acc[v.privacy]) {
-            acc[v.privacy] = {};
-          }
-          acc[v.privacy][v.id] = v;
-          return acc;
-        },
-        {}
-      );
+      return [...state, ...action.data];
     }
     case NAMECARD_DELETE_SUCCESS: {
-      return _.reduce(
-        state,
-        (acc, v, k) => {
-          if (k !== action.payload.privacy) {
-            acc[k] = v;
-          } else {
-            acc[k] = _.omit(v, action.payload.id.toString());
-          }
-          return acc;
-        },
-        {}
-      );
+      return []; // TODO - delte a namecard
     }
     default:
       return state;
   }
 };
 
-const entitiesInitial = {};
-const entities = (state = entitiesInitial, action) => {
+const entities = (state = {}, action) => {
   switch (action.type) {
     case NAMECARD_CREATE_SUCCESS: {
       const { username } = action.meta.user;
@@ -89,12 +54,12 @@ const entities = (state = entitiesInitial, action) => {
       };
       return state;
     }
-    case NAMECARD_LOAD_SUCCESS:
-      state = {
+    case NAMECARD_LOAD_SUCCESS: {
+      return {
         ...state,
         [action.username]: byName(state[action.username], action)
       };
-      return state;
+    }
     case NAMECARD_DELETE_SUCCESS: {
       const { username } = action.meta.user;
       state = {

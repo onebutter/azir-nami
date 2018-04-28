@@ -9,7 +9,7 @@ import Namecard from '../../components/Namecard';
 class PublicNamecardsContainer extends React.Component {
   render() {
     const { entities } = this.props;
-    const temp = _.map(entities, entity => {
+    const publicNcs = _.map(entities, entity => {
       const { id, tag, services, aliases } = entity;
       return (
         <div key={id}>
@@ -21,17 +21,26 @@ class PublicNamecardsContainer extends React.Component {
       return (
         <div className={styles.root}>
           <Carousel arrows={false} infinite={false}>
-            {temp}
+            {publicNcs}
           </Carousel>
         </div>
       );
     }
-    return null;
+    return (
+      <div className={styles.root}>
+        <div className={styles.nothingToShow}>
+          {this.props.username} has no other namecards.
+        </div>
+      </div>
+    )
   }
 }
 
 const mapStateToProps = (state, props) => ({
-  entities: _.get(state, `namecard.entities.${props.username}.public`, {})
+  entities: _.filter(
+    _.get(state, `namecard.entities.${props.username}`, []),
+    v => v.privacy === 'public'
+  )
 });
 
 export default connect(mapStateToProps, null)(PublicNamecardsContainer);

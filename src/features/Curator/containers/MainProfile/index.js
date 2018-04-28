@@ -8,7 +8,6 @@ import DefaultNamecard from 'Features/Namecard/containers/Default';
 import PublicNamecard from 'Features/Namecard/containers/Public';
 import ErrorUserNotFound from '../../components/ErrorUserNotFound';
 import PrivacyBar from '../../components/PrivacyBar';
-import { isNamecardExist } from '../../utils';
 import Loading from 'Containers/Loading';
 
 class MainProfile extends React.Component {
@@ -20,8 +19,7 @@ class MainProfile extends React.Component {
   render() {
     const { status, username, counts } = this.props;
     if (status.success) {
-      const noNamecard = !isNamecardExist(counts);
-      if (noNamecard) {
+      if (!counts) {
         return (
           <div className={styles.root}>
             <div className={styles.profile}>@{username} has no namecard</div>
@@ -82,19 +80,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = (state, props) => {
-  const counts = _.reduce(
-    _.get(state, `namecard.entities.${props.username}`),
-    (acc, v, k) => {
-      acc[k] += Object.keys(v).length;
-      return acc;
-    },
-    {
-      public: 0,
-      private: 0,
-      secret: 0,
-      default: 0
-    }
-  );
+  const counts = _.get(state, `namecard.entities.${props.username}`, []).length;
   return {
     status: state.namecard.status,
     counts

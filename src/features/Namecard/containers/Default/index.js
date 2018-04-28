@@ -51,7 +51,10 @@ class DefaultNamecardContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  entity: _.get(state, `namecard.entities.${props.username}.default`, {})
+  entity: _.filter(
+    _.get(state, `namecard.entities.${props.username}`, []),
+    v => v.privacy === 'default'
+  )
 });
 
 export default withRouter(
