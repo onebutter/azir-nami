@@ -35,7 +35,14 @@ class Manage extends React.Component {
         return _.concat(acc, _.toArray(v));
       },
       []
-    ).sort((a, b) => sortValueMapping[a.privacy] - sortValueMapping[b.privacy]);
+    ).sort((a, b) => {
+      if (a.privacy === b.privacy) {
+        const aDate = new Date(a.updatedAt);
+        const bDate = new Date(b.updatedAt);
+        return bDate - aDate;
+      }
+      return sortValueMapping[a.privacy] - sortValueMapping[b.privacy];
+    });
 
     const namecardComponents = flattenEntities.map(({ id, privacy }) => (
       <DeletableNamecard
