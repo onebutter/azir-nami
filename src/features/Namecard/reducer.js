@@ -54,6 +54,12 @@ const entities = (state = {}, action) => {
       };
       return state;
     }
+    case NAMECARD_LOAD_REQUEST: {
+      return {
+        ...state,
+        [action.username]: []
+      };
+    }
     case NAMECARD_LOAD_SUCCESS: {
       return {
         ...state,

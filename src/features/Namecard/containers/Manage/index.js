@@ -19,8 +19,8 @@ const sortValueMapping = {
 
 class Manage extends React.Component {
   componentDidMount() {
-    const { load } = this.props;
-    load();
+    const { load, username } = this.props;
+    load(username);
   }
 
   render() {
