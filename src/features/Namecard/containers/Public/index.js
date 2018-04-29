@@ -10,10 +10,10 @@ class PublicNamecardsContainer extends React.Component {
   render() {
     const { entities } = this.props;
     const publicNcs = _.map(entities, entity => {
-      const { id, tag, services, aliases } = entity;
+      const { id, services, aliases } = entity;
       return (
         <div key={id}>
-          <Namecard tag={tag} services={services} aliases={aliases} />
+          <Namecard services={services} aliases={aliases} />
         </div>
       );
     });

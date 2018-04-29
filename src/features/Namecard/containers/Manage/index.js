@@ -24,18 +24,12 @@ class Manage extends React.Component {
   }
 
   render() {
-    const { status, entities, username } = this.props;
+    const { status, entities } = this.props;
     if (status.request || !entities) {
       return <Loading />;
     }
 
-    const flattenEntities = _.reduce(
-      entities,
-      (acc, v) => {
-        return _.concat(acc, _.toArray(v));
-      },
-      []
-    ).sort((a, b) => {
+    const sortedEntities = _.cloneDeep(entities).sort((a, b) => {
       if (a.privacy === b.privacy) {
         const aDate = new Date(a.updatedAt);
         const bDate = new Date(b.updatedAt);
@@ -44,13 +38,8 @@ class Manage extends React.Component {
       return sortValueMapping[a.privacy] - sortValueMapping[b.privacy];
     });
 
-    const namecardComponents = flattenEntities.map(({ id, privacy }) => (
-      <DeletableNamecard
-        key={id}
-        id={id}
-        username={username}
-        privacy={privacy}
-      />
+    const namecardComponents = sortedEntities.map(({ ...props }) => (
+      <DeletableNamecard key={props.id} {...props} />
     ));
     return (
       <div className={styles.root}>
@@ -64,7 +53,7 @@ class Manage extends React.Component {
             render={() => <Link to="/manage/add">Add</Link>}
           />
         </div>
-        {flattenEntities.length > 0 ? (
+        {sortedEntities.length > 0 ? (
           <div className={styles.namecards}>{namecardComponents}</div>
         ) : (
           <div>You have no namecard yet!</div>

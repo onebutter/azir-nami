@@ -8,29 +8,16 @@ import styles from './styles.css';
 
 class DeletableNamecard extends React.Component {
   render() {
-    if (!_.isEmpty(this.props.entity)) {
-      return (
-        <div className={styles.root}>
-          <Namecard
-            {...this.props.entity}
-            onDelete={id => this.props.remove(id)}
-          />
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div className={styles.root}>
+        <Namecard {...this.props} onDelete={id => this.props.remove(id)} />
+      </div>
+    );
   }
 }
-
-const mapStateToProps = (state, props) => {
-  const { username, privacy, id } = props;
-  return {
-    entity: _.get(state, `namecard.entities.${username}.${privacy}.${id}`, {})
-  };
-};
 
 const mapDispatchToProps = dispatch => ({
   remove: bindActionCreators(deleteNamecardRequest, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeletableNamecard);
+export default connect(null, mapDispatchToProps)(DeletableNamecard);

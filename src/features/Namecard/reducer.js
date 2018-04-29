@@ -37,7 +37,7 @@ const byName = (state = [], action) => {
       return [...state, ...action.data];
     }
     case NAMECARD_DELETE_SUCCESS: {
-      return []; // TODO - delte a namecard
+      return _.filter(state, v => v.id !== action.payload.id);
     }
     default:
       return state;
