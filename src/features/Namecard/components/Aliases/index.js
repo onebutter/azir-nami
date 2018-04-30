@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 const Aliases = ({ content }) => {
   const aliases = content.map((alias, i) => {
-    return <Alias key={i} value={alias.value} type={alias.type} />;
+    return <Alias key={i} value={alias.value} label={alias.label} />;
   });
   return <div className={styles.root}>{aliases}</div>;
 };
