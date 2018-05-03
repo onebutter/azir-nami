@@ -32,7 +32,7 @@ class PublicNamecardsContainer extends React.Component {
           {this.props.username} has no other namecards.
         </div>
       </div>
-    )
+    );
   }
 }
 

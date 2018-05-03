@@ -7,7 +7,8 @@ import { Route, withRouter } from 'react-router';
 import Loading from 'Containers/Loading';
 import { loadNamecardRequest } from '../../actions';
 import DeletableNamecard from '../DeletableNamecard';
-import AddForm from '../AddForm';
+// import AddForm from '../AddForm';
+import AddForm from 'Features/AddForm';
 import styles from './styles.css';
 
 const sortValueMapping = {

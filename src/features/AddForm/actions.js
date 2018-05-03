@@ -1,13 +1,15 @@
-export const ADDFORM_ALIAS_ADD = 'ADDFORM_ALIAS_ADD';
+export const ADDFORM_ALIAS_UPSERT = 'ADDFORM_ALIAS_UPSERT';
 export const ADDFORM_ALIAS_REMOVE = 'ADDFORM_ALIAS_REMOVE';
 export const ADDFORM_PRIVACY_UPDATE = 'ADDFORM_PRIVACY_UPDATE';
-export const ADDFORM_SERVICE_ADD = 'ADDFORM_SERVICE_ADD';
+export const ADDFORM_SERVICE_UPSERT = 'ADDFORM_SERVICE_UPSERT';
 export const ADDFORM_SERVICE_REMOVE = 'ADDFORM_SERVICE_REMOVE';
-export const ADDFORM_TAG_ADD = 'ADDFORM_TAG_ADD';
+export const ADDFORM_TAG_UPSERT = 'ADDFORM_TAG_UPSERT';
 export const ADDFORM_TAG_REMOVE = 'ADDFORM_TAG_REMOVE';
+export const ADDFORM_META_UPDATE = 'ADDFORM_META_UPDATE';
+export const ADDFORM_META_RESET = 'ADDFORM_META_RESET';
 
-export const addAlias = (data, idx = null) => ({
-  type: ADDFORM_ALIAS_ADD,
+export const upsertAlias = (data, idx = null) => ({
+  type: ADDFORM_ALIAS_UPSERT,
   data,
   idx
 });
@@ -21,8 +23,8 @@ export const updatePrivacty = privacy => ({
   privacy
 });
 
-export const addService = (data, idx = null) => ({
-  type: ADDFORM_SERVICE_ADD,
+export const upsertService = (data, idx = null) => ({
+  type: ADDFORM_SERVICE_UPSERT,
   data,
   idx
 });
@@ -31,12 +33,20 @@ export const removeService = idx => ({
   idx
 });
 
-export const addTag = (data, idx = null) => ({
-  type: ADDFORM_TAG_ADD,
+export const upsertTag = (data, idx = null) => ({
+  type: ADDFORM_TAG_UPSERT,
   data,
   idx
 });
 export const removeTag = idx => ({
   type: ADDFORM_TAG_REMOVE,
   idx
+});
+
+export const updateMeta = data => ({
+  type: ADDFORM_META_UPDATE,
+  data
+});
+export const resetMeta = () => ({
+  type: ADDFORM_META_RESET
 });
