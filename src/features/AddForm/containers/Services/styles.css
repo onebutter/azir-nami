@@ -19,6 +19,39 @@
   }
 }
 
+.valueInput,
+.labelInput {
+  padding: 0;
+  border: none;
+  background-color: aliceblue;
+  margin-bottom: -1px;
+  font-family: 'Assistant', sans-serif;
+  font-size: 1rem;
+}
+
+.labelInput {
+  display: block;
+  color: rgb(86, 86, 86);
+  border-bottom: 1px solid rgb(86, 86, 86);
+  width: 6rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}
+
+.valueInput {
+  display: inline-block;
+  color: #171E27;
+  border-bottom: 1px solid #171E27;
+  margin-left: 0.5rem;
+  width: 12rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}
+
 
 .newServiceValueInput,
 .newServiceLabelInput {
