@@ -1,0 +1,20 @@
+.root {
+}
+
+.root > button {
+  padding: 0.2rem 0.5rem;
+  border: none;
+  border-radius: 0;
+  margin-right: 0.3rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.createButton {
+  background-color: #bafc80;
+}
+
+.cancelButton {
+  background-color: #dadada;
+}

@@ -23,7 +23,7 @@ const extServicePersistConfig = {
 const formDataPersistConfig = {
   key: 'formData',
   storage,
-  whitelist: ['data']
+  whitelist: ['data', 'newItems']
 };
 
 const rootReducer = combineReducers({

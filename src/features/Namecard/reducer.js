@@ -30,14 +30,8 @@ const status = createStatus({
 
 const byName = (state = [], action) => {
   switch (action.type) {
-    case NAMECARD_CREATE_SUCCESS: {
-      return [...state, action.payload];
-    }
     case NAMECARD_LOAD_SUCCESS: {
-      return [...state, ...action.data];
-    }
-    case NAMECARD_DELETE_SUCCESS: {
-      return _.filter(state, v => v.id !== action.payload.id);
+      return [...action.data];
     }
     default:
       return state;
@@ -46,33 +40,11 @@ const byName = (state = [], action) => {
 
 const entities = (state = {}, action) => {
   switch (action.type) {
-    case NAMECARD_CREATE_SUCCESS: {
-      const { username } = action.meta.user;
-      state = {
-        ...state,
-        [username]: byName(state[username], action)
-      };
-      return state;
-    }
-    case NAMECARD_LOAD_REQUEST: {
-      return {
-        ...state,
-        [action.username]: []
-      };
-    }
     case NAMECARD_LOAD_SUCCESS: {
       return {
         ...state,
         [action.username]: byName(state[action.username], action)
       };
-    }
-    case NAMECARD_DELETE_SUCCESS: {
-      const { username } = action.meta.user;
-      state = {
-        ...state,
-        [username]: byName(state[username], action)
-      };
-      return state;
     }
     default:
       return state;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { upsertAlias } from '../../actions';
+import { upsertAlias, updateNewAlias } from '../../actions';
 import styles from './styles.css';
 
 class NewAlias extends React.Component {
@@ -12,9 +12,16 @@ class NewAlias extends React.Component {
   }
 
   state = {
-    label: '',
-    value: ''
+    label: this.props.persistedLabel,
+    value: this.props.persistedValue
   };
+
+  static getDerivedStateFromProps(props) {
+    return {
+      label: props.persistedLabel,
+      value: props.persistedValue
+    };
+  }
 
   handleChange = e => {
     e.preventDefault();
@@ -42,6 +49,11 @@ class NewAlias extends React.Component {
     }
   };
 
+  handleBlur = () => {
+    const { value, label } = this.state;
+    this.props.update({ label, value });
+  };
+
   render() {
     const { label, value } = this.state;
     return (
@@ -54,6 +66,7 @@ class NewAlias extends React.Component {
           name="label"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForLabel}
+          onBlur={this.handleBlur}
           autoCapitalize="false"
           placeholder="e.g.) Name"
         />
@@ -65,6 +78,7 @@ class NewAlias extends React.Component {
           name="value"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForValue}
+          onBlur={this.handleBlur}
           autoCapitalize="false"
           placeholder="John Doe"
         />
@@ -73,10 +87,19 @@ class NewAlias extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
+  const { value, label } = state.formData.newItems.aliases;
   return {
-    upsert: bindActionCreators(upsertAlias, dispatch)
+    persistedLabel: label,
+    persistedValue: value
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewAlias);
+const mapDispatchToProps = dispatch => {
+  return {
+    upsert: bindActionCreators(upsertAlias, dispatch),
+    update: bindActionCreators(updateNewAlias, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewAlias);

@@ -14,7 +14,10 @@ const {
   ADDFORM_TAG_REMOVE,
   ADDFORM_META_UPDATE,
   ADDFORM_META_RESET,
-  ADDFORM_PRIVACY_UPDATE
+  ADDFORM_PRIVACY_UPDATE,
+  ADDFORM_DATA_RESET,
+  ADDFORM_ALIAS_NEWITEM_UPDATE,
+  ADDFORM_SERVICE_NEWITEM_UPDATE
 } = actionsAddform;
 
 const services = (state = [], action) => {
@@ -90,6 +93,7 @@ const formData = (state = initFormData, action) => {
         tags: tags(state.tags, action)
       };
     case NAMECARD_CREATE_SUCCESS:
+    case ADDFORM_DATA_RESET:
       return initFormData;
     default:
       return state;
@@ -117,7 +121,39 @@ const meta = (state = initMeta, action) => {
   }
 };
 
+const initNewItems = {
+  services: {
+    value: '',
+    label: ''
+  },
+  aliases: {
+    value: '',
+    label: ''
+  }
+};
+
+const newItems = (state = initNewItems, action) => {
+  switch (action.type) {
+    case ADDFORM_ALIAS_NEWITEM_UPDATE:
+      return {
+        ...state,
+        aliases: action.data
+      };
+    case ADDFORM_SERVICE_NEWITEM_UPDATE:
+      return {
+        ...state,
+        services: action.data
+      };
+    case NAMECARD_CREATE_SUCCESS:
+    case ADDFORM_DATA_RESET:
+      return initNewItems;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   data: formData,
-  meta
+  meta,
+  newItems
 });

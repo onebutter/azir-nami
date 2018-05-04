@@ -4,9 +4,15 @@
   border-radius: 1px;
 }
 
+.error {
+  margin-bottom: 0.4rem;
+  padding: 0.3rem;
+  background-color: orange;
+  color: #171E27;
+}
+
 .topbar {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.2rem;
-  margin-right: 0.3rem;
 }

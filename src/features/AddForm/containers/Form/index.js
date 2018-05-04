@@ -1,5 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Aliases from '../Aliases';
 import Services from '../Services';
@@ -9,8 +8,10 @@ import styles from './styles.css';
 
 class Form extends React.Component {
   render() {
+    const { status, error } = this.props;
     return (
       <form>
+        {status.error && <div className={styles.error}>{error.message}</div>}
         <div className={styles.topbar}>
           <div className={styles.topbarItem}>
             <Privacy />
@@ -28,12 +29,12 @@ class Form extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  return null;
+const mapStateToProps = state => {
+  const { status, error } = state.namecard;
+  return {
+    status,
+    error
+  };
 };
 
-const mapDispatchToProps = dispatch => {
-  return null;
-};
-
-export default connect(null, null)(Form);
+export default connect(mapStateToProps, null)(Form);

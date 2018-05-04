@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { upsertService } from '../../actions';
+import { upsertService, updateNewService } from '../../actions';
 import styles from './styles.css';
 
 class NewService extends React.Component {
@@ -12,9 +12,16 @@ class NewService extends React.Component {
   }
 
   state = {
-    label: '',
-    value: ''
+    label: this.props.persistedLabel,
+    value: this.props.persistedValue
   };
+
+  static getDerivedStateFromProps(props) {
+    return {
+      label: props.persistedLabel,
+      value: props.persistedValue
+    };
+  }
 
   handleChange = e => {
     e.preventDefault();
@@ -42,6 +49,11 @@ class NewService extends React.Component {
     }
   };
 
+  handleBlur = () => {
+    const { value, label } = this.state;
+    this.props.update({ label, value });
+  };
+
   render() {
     const { label, value } = this.state;
     return (
@@ -54,6 +66,7 @@ class NewService extends React.Component {
           name="label"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForLabel}
+          onBlur={this.handleBlur}
           autoCapitalize="false"
           placeholder="e.g.) website"
         />
@@ -65,6 +78,7 @@ class NewService extends React.Component {
           name="value"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForValue}
+          onBlur={this.handleBlur}
           autoCapitalize="false"
           placeholder="e.g.) http://reachaf.com"
         />
@@ -73,10 +87,19 @@ class NewService extends React.Component {
   }
 }
 
-const mapDistpatchToProps = dispatch => {
+const mapStateToProps = state => {
+  const { value, label } = state.formData.newItems.services;
   return {
-    upsert: bindActionCreators(upsertService, dispatch)
+    persistedLabel: label,
+    persistedValue: value
   };
 };
 
-export default connect(null, mapDistpatchToProps)(NewService);
+const mapDistpatchToProps = dispatch => {
+  return {
+    upsert: bindActionCreators(upsertService, dispatch),
+    update: bindActionCreators(updateNewService, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDistpatchToProps)(NewService);
