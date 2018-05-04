@@ -13,7 +13,8 @@ const {
   ADDFORM_TAG_UPSERT,
   ADDFORM_TAG_REMOVE,
   ADDFORM_META_UPDATE,
-  ADDFORM_META_RESET
+  ADDFORM_META_RESET,
+  ADDFORM_PRIVACY_UPDATE
 } = actionsAddform;
 
 const services = (state = [], action) => {
@@ -58,7 +59,7 @@ const tags = (state = [], action) => {
 
 const initFormData = {
   aliases: [],
-  privacy: '',
+  privacy: 'public',
   services: [],
   tags: []
 };
@@ -71,7 +72,7 @@ const formData = (state = initFormData, action) => {
         ...state,
         aliases: aliases(state.aliases, action)
       };
-    case actionsAddform.ADDFORM_PRIVACY_UPDATE:
+    case ADDFORM_PRIVACY_UPDATE:
       return {
         ...state,
         privacy: action.privacy
