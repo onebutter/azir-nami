@@ -1,0 +1,90 @@
+.aliases {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background: #0f3965;
+  padding: 0.6rem 0.5rem;
+  border-radius: 2px;
+}
+
+.alias {
+  color: aliceblue;
+  padding: 0.3rem;
+}
+
+.displayLabel {
+  cursor: pointer;
+  &:hover {
+    text-decoration-line: underline;
+  }
+}
+
+.displayValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    text-decoration-line: underline;
+  }
+}
+
+.valueInput,
+.labelInput {
+  padding: 0;
+  border: none;
+  color: aliceblue;
+  background-color: #0f3965;
+  font-family: 'Assistant', sans-serif;
+  border-bottom: 1px solid aliceblue;
+  margin-bottom: -1px;
+}
+
+.labelInput {
+  font-size: 1rem;
+  width: 6rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}
+
+.valueInput {
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 12rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}
+
+.newAliasValueInput,
+.newAliasLabelInput {
+  display: block;
+  padding: 0;
+  border: none;
+  color: aliceblue;
+  background-color: #0f3965;
+  font-family: 'Assistant', sans-serif;
+  border-bottom: 1px solid aliceblue;
+}
+
+.newAliasLabelInput {
+  font-size: 1rem;
+  width: 6rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}
+
+.newAliasValueInput {
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 12rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}

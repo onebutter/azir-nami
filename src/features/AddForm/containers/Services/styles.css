@@ -1,3 +1,7 @@
+.services {
+  padding-top: 1rem;
+}
+
 .service {
   margin-bottom: 0.5rem;
 }
@@ -55,19 +59,18 @@
 
 .newServiceValueInput,
 .newServiceLabelInput {
-  padding: 0.3rem;
-  padding-left: 0;
+  padding: 0;
   border: none;
   background-color: aliceblue;
   font-family: 'Assistant', sans-serif;
   font-size: 1rem;
-  margin-bottom: 0.2rem;
 }
 
 .newServiceLabelInput {
   display: block;
   color: rgb(86, 86, 86);
   border-bottom: 1px solid rgb(86, 86, 86);
+  margin-bottom: 0;
   width: 6rem;
   &:focus {
     outline: none;
@@ -80,6 +83,7 @@
   color: #171E27;
   border-bottom: 1px solid #171E27;
   margin-left: 0.5rem;
+  margin-bottom: 0.2rem;
   width: 12rem;
   &:focus {
     outline: none;

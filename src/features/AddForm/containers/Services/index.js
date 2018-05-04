@@ -7,15 +7,10 @@ import styles from './styles.css';
 class Services extends React.Component {
   render() {
     const { services } = this.props;
-    const fields = services.map((v, i) => (
-      <ServiceFields {...v} key={i} idx={i} />
-    ));
-    const newService = <NewService idx={services.length} />;
-
     return (
       <div className={styles.services}>
-        {fields}
-        {newService}
+        {services.map((v, i) => <ServiceFields {...v} key={i} idx={i} />)}
+        <NewService idx={services.length} />
       </div>
     );
   }

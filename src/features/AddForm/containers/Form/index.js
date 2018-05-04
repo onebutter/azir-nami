@@ -1,13 +1,18 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Aliases from '../Aliases';
 import Services from '../Services';
+import styles from './styles.css';
 
 class Form extends React.Component {
   render() {
     return (
       <form>
-        <Services />
+        <div className={styles.namecard}>
+          <Aliases />
+          <Services />
+        </div>
       </form>
     );
   }

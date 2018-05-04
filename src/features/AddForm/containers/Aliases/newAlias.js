@@ -1,10 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { upsertService } from '../../actions';
+import { upsertAlias } from '../../actions';
 import styles from './styles.css';
 
-class NewService extends React.Component {
+class NewAlias extends React.Component {
   constructor(props) {
     super(props);
     this.valueInputRef = React.createRef();
@@ -45,38 +45,38 @@ class NewService extends React.Component {
   render() {
     const { label, value } = this.state;
     return (
-      <div className={styles.newService}>
+      <div className={styles.newAlias}>
         <input
           ref={this.labelInputRef}
-          className={styles.newServiceLabelInput}
+          className={styles.newAliasLabelInput}
           type="text"
           value={label}
           name="label"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForLabel}
           autoCapitalize="false"
-          placeholder="e.g.) website"
+          placeholder="e.g.) Name"
         />
         <input
           ref={this.valueInputRef}
-          className={styles.newServiceValueInput}
+          className={styles.newAliasValueInput}
           type="text"
           value={value}
           name="value"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForValue}
           autoCapitalize="false"
-          placeholder="e.g.) http://reachaf.com"
+          placeholder="John Doe"
         />
       </div>
     );
   }
 }
 
-const mapDistpatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    upsert: bindActionCreators(upsertService, dispatch)
+    upsert: bindActionCreators(upsertAlias, dispatch)
   };
 };
 
-export default connect(null, mapDistpatchToProps)(NewService);
+export default connect(null, mapDispatchToProps)(NewAlias);
