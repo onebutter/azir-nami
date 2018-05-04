@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { push } from 'react-router-redux';
-import reduce from 'lodash/reduce';
 import { resetData } from '../../actions';
 import { createNamecardRequest } from 'Features/Namecard/actions';
 import styles from './styles.css';
