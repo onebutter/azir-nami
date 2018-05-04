@@ -38,11 +38,21 @@ class ServiceFields extends React.Component {
 
   render() {
     const { label, value, activeField, idx } = this.props;
+    const displayLabel = (
+      <div className={styles.displayLabel} onClick={this.activateLabelField}>
+        {label}
+      </div>
+    );
+    const displayValue = (
+      <div className={styles.displayValue} onClick={this.activateValueField}>
+        {value}
+      </div>
+    );
     if (activeField === '') {
       return (
         <div className={styles.service}>
-          <div onClick={this.activateLabelField}>{label}</div>
-          <div onClick={this.activateValueField}>{value}</div>
+          {displayLabel}
+          {displayValue}
         </div>
       );
     }
@@ -50,7 +60,7 @@ class ServiceFields extends React.Component {
     if (activeField === 'value') {
       return (
         <div className={styles.service}>
-          <div onClick={this.activateLabelField}>{label}</div>
+          {displayLabel}
           <Edit
             idx={idx}
             keyName={activeField}
@@ -70,7 +80,7 @@ class ServiceFields extends React.Component {
             data={label}
             onUpdate={this.addService}
           />
-          <div onClick={this.activateValueField}>{value}</div>
+          {displayValue}
         </div>
       );
     }

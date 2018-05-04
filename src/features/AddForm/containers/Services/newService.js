@@ -8,6 +8,7 @@ class NewService extends React.Component {
   constructor(props) {
     super(props);
     this.valueInputRef = React.createRef();
+    this.labelInputRef = React.createRef();
   }
 
   state = {
@@ -33,10 +34,11 @@ class NewService extends React.Component {
     const { keyCode } = e;
     const { upsert, idx } = this.props;
     const { label, value } = this.state;
-    if (keyCode === 13) {
+    if (keyCode === 13 && label.length + value.length > 0) {
       e.preventDefault();
       upsert({ label, value }, idx);
       this.setState({ label: '', value: '' });
+      this.labelInputRef.current.focus();
     }
   };
 
@@ -44,8 +46,11 @@ class NewService extends React.Component {
     e.preventDefault();
     const { upsert, idx } = this.props;
     const { label, value } = this.state;
-    upsert({ label, value }, idx);
-    this.setState({ label: '', value: '' });
+    if (label.length + value.length > 0) {
+      upsert({ label, value }, idx);
+      this.setState({ label: '', value: '' });
+      this.labelInputRef.current.focus();
+    }
   };
 
   render() {
@@ -53,6 +58,8 @@ class NewService extends React.Component {
     return (
       <div className={styles.newService}>
         <input
+          ref={this.labelInputRef}
+          className={styles.newServiceLabelInput}
           type="text"
           value={label}
           name="label"
@@ -62,6 +69,7 @@ class NewService extends React.Component {
         />
         <input
           ref={this.valueInputRef}
+          className={styles.newServiceValueInput}
           type="text"
           value={value}
           name="value"
@@ -69,7 +77,12 @@ class NewService extends React.Component {
           onKeyDown={this.handleKeyDownForValue}
           autoCapitalize="false"
         />
-        <button onClick={this.handleButtonClick}>+</button>
+        <button
+          className={styles.newServiceButton}
+          onClick={this.handleButtonClick}
+        >
+          +
+        </button>
       </div>
     );
   }

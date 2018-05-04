@@ -1,0 +1,55 @@
+.service {
+  margin-bottom: 0.5rem;
+}
+
+.displayLabel {
+  color: rgb(86, 86, 86);
+  cursor: pointer;
+  &:hover {
+    text-decoration-line: underline;
+  }
+}
+
+.displayValue {
+  color: #171E27;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  &:hover {
+    text-decoration-line: underline;
+  }
+}
+
+
+.newServiceValueInput,
+.newServiceLabelInput {
+  padding: 0.3rem;
+  padding-left: 0;
+  border: none;
+  background-color: aliceblue;
+  font-family: 'Assistant', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.newServiceLabelInput {
+  display: block;
+  color: rgb(86, 86, 86);
+  border-bottom: 1px solid rgb(86, 86, 86);
+  width: 6rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}
+
+.newServiceValueInput {
+  display: inline-block;
+  color: #171E27;
+  border-bottom: 1px solid #171E27;
+  margin-left: 0.5rem;
+  width: 12rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid yellowgreen;
+  }
+}

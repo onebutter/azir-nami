@@ -13,7 +13,7 @@ class Services extends React.Component {
     const newService = <NewService idx={services.length} />;
 
     return (
-      <div className={styles.row}>
+      <div className={styles.services}>
         {fields}
         {newService}
       </div>
