@@ -28,6 +28,7 @@ class SearchBox extends React.Component {
             type="text"
             autoCorrect="off"
             autoCapitalize="none"
+            autoFocus={true}
             placeholder="username?"
             value={this.state.username}
           />

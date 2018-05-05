@@ -66,6 +66,7 @@ class LoginForm extends React.Component {
             value={this.state.username}
             onChange={this.handleChange}
             placeholder="username"
+            autoFocus={true}
           />
           <div className={styles.usernameError}>{usernameErrorMsg}</div>
           <input

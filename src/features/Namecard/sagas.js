@@ -54,6 +54,7 @@ function* deleteNamecard(action) {
     const { id, meta } = action;
     const data = yield call(deleteNamecards, meta.token, id);
     yield put(actions.deleteNamecardSuccess(data));
+    yield put(actions.loadNamecardRequest());
   } catch (error) {
     yield put(actions.deleteNamecardError(error.response));
   }

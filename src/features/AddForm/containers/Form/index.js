@@ -4,9 +4,18 @@ import Aliases from '../Aliases';
 import Services from '../Services';
 import Privacy from '../Privacy';
 import ControlButtons from '../ControlButtons';
+import ExternalServices from 'Features/ExtService/containers/Services';
+import DiscordExtService from 'Features/ExtService/containers/Discord';
+import GithubExtService from 'Features/ExtService/containers/Github';
 import styles from './styles.css';
+import { bindActionCreators } from '../../../../../../../Library/Caches/typescript/2.8/node_modules/redux';
+import { upsertService } from '../../actions';
 
 class Form extends React.Component {
+  addExtService = extService => {
+    this.props.addService({ ...extService });
+  };
+
   render() {
     const { status, error } = this.props;
     return (
@@ -24,10 +33,25 @@ class Form extends React.Component {
           <Aliases />
           <Services />
         </div>
+        <div className={styles.extServices}>
+          <ExternalServices>
+            <DiscordExtService
+              onSuccess={this.addExtService}
+              disabled={false}
+            />
+            <GithubExtService onSuccess={this.addExtService} disabled={false} />
+          </ExternalServices>
+        </div>
       </form>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addService: bindActionCreators(upsertService, dispatch)
+  };
+};
 
 const mapStateToProps = state => {
   const { status, error } = state.namecard;
@@ -37,4 +61,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

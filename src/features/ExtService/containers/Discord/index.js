@@ -10,11 +10,11 @@ import logo from './logo.png';
 
 class DiscordExtService extends React.Component {
   handleClick = () => {
+    this.props.requestDiscord();
     const { authorizeURL, clientID } = config.api.discord;
     const { pathname, origin } = window.location;
     const current = encodeURIComponent(origin + pathname);
     const url = `${authorizeURL}?client_id=${clientID}&redirect_uri=${current}&response_type=code&scope=identify`;
-    this.props.requestDiscord();
     window.location.href = url;
   };
 
@@ -31,9 +31,9 @@ class DiscordExtService extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { entity } = nextProps;
-    if (entity && entity.length > 0) {
-      this.props.onSuccess({ discord: entity });
+    const { entity, status } = nextProps;
+    if (entity && entity.length > 0 && status.success) {
+      this.props.onSuccess({ label: 'Discord', value: entity });
     }
   }
 

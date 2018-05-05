@@ -12,21 +12,26 @@ class NewAlias extends React.Component {
   }
 
   state = {
-    label: this.props.persistedLabel,
-    value: this.props.persistedValue
+    label: this.props.label,
+    value: this.props.value
   };
 
   static getDerivedStateFromProps(props) {
-    return {
-      label: props.persistedLabel,
-      value: props.persistedValue
-    };
+    const { label, value } = props;
+    return { label, value };
   }
 
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    const existingState = {
+      label: this.state.label,
+      value: this.state.value
+    };
+    this.props.update({
+      ...existingState,
+      [name]: value
+    });
   };
 
   handleKeyDownForLabel = e => {
@@ -39,23 +44,21 @@ class NewAlias extends React.Component {
 
   handleKeyDownForValue = e => {
     const { keyCode } = e;
-    const { upsert, idx } = this.props;
+    const { update, upsert, idx } = this.props;
     const { label, value } = this.state;
     if (keyCode === 13 && label.length + value.length > 0) {
       e.preventDefault();
       upsert({ label, value }, idx);
-      this.setState({ label: '', value: '' });
+      const resetObject = { label: '', value: '' };
+      update(resetObject);
       this.labelInputRef.current.focus();
     }
   };
 
-  handleBlur = () => {
-    const { value, label } = this.state;
-    this.props.update({ label, value });
-  };
-
   render() {
-    const { label, value } = this.state;
+    const { label, value, idx } = this.props;
+    const labelEgs = ['Name', 'From', 'the University of Waterloo'];
+    const valueEgs = ['Ken', 'Waterloo', 'Computer Engineering'];
     return (
       <div className={styles.newAlias}>
         <input
@@ -66,9 +69,9 @@ class NewAlias extends React.Component {
           name="label"
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDownForLabel}
-          onBlur={this.handleBlur}
+          autoFocus={true}
           autoCapitalize="false"
-          placeholder="e.g.) Name"
+          placeholder={`e.g. ${labelEgs[idx % labelEgs.length]}`}
         />
         <input
           ref={this.valueInputRef}
@@ -80,7 +83,7 @@ class NewAlias extends React.Component {
           onKeyDown={this.handleKeyDownForValue}
           onBlur={this.handleBlur}
           autoCapitalize="false"
-          placeholder="John Doe"
+          placeholder={`e.g. ${valueEgs[idx % valueEgs.length]}`}
         />
       </div>
     );
@@ -89,10 +92,7 @@ class NewAlias extends React.Component {
 
 const mapStateToProps = state => {
   const { value, label } = state.formData.newItems.aliases;
-  return {
-    persistedLabel: label,
-    persistedValue: value
-  };
+  return { label, value };
 };
 
 const mapDispatchToProps = dispatch => {

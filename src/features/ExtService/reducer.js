@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { createStatus } from 'Utils/reducer';
 import * as actions from './actions';
 const {
   EXT_DISCORD_CODE_REQUEST,
@@ -55,8 +56,15 @@ const entities = (state = {}, action) => {
   }
 };
 
+const status = createStatus({
+  request: [EXT_DISCORD_CODE_REQUEST, EXT_GITHUB_CODE_REQUEST],
+  success: [EXT_DISCORD_CODE_SUCCESS, EXT_GITHUB_CODE_SUCCESS],
+  error: []
+});
+
 export default combineReducers({
   requested,
   codes,
-  entities
+  entities,
+  status
 });

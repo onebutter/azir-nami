@@ -12,21 +12,26 @@ class NewService extends React.Component {
   }
 
   state = {
-    label: this.props.persistedLabel,
-    value: this.props.persistedValue
+    label: this.props.label,
+    value: this.props.value
   };
 
   static getDerivedStateFromProps(props) {
-    return {
-      label: props.persistedLabel,
-      value: props.persistedValue
-    };
+    const { label, value } = props;
+    return { label, value };
   }
 
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    const existingState = {
+      label: this.state.label,
+      value: this.state.value
+    };
+    this.props.update({
+      ...existingState,
+      [name]: value
+    });
   };
 
   handleKeyDownForLabel = e => {
@@ -39,23 +44,25 @@ class NewService extends React.Component {
 
   handleKeyDownForValue = e => {
     const { keyCode } = e;
-    const { upsert, idx } = this.props;
+    const { update, upsert, idx } = this.props;
     const { label, value } = this.state;
     if (keyCode === 13 && label.length + value.length > 0) {
       e.preventDefault();
       upsert({ label, value }, idx);
-      this.setState({ label: '', value: '' });
+      const resetObject = { label: '', value: '' };
+      update(resetObject);
       this.labelInputRef.current.focus();
     }
   };
 
-  handleBlur = () => {
-    const { value, label } = this.state;
-    this.props.update({ label, value });
-  };
-
   render() {
-    const { label, value } = this.state;
+    const { label, value, idx } = this.props;
+    const labelEgs = ['email', 'website', 'facebook'];
+    const valueEgs = [
+      'contact@reachaf.com',
+      'http://reachaf.com',
+      'www.facebook.com/donkeysmash'
+    ];
     return (
       <div className={styles.newService}>
         <input
@@ -68,7 +75,7 @@ class NewService extends React.Component {
           onKeyDown={this.handleKeyDownForLabel}
           onBlur={this.handleBlur}
           autoCapitalize="false"
-          placeholder="e.g.) website"
+          placeholder={`e.g. ${labelEgs[idx % labelEgs.length]}`}
         />
         <input
           ref={this.valueInputRef}
@@ -80,7 +87,7 @@ class NewService extends React.Component {
           onKeyDown={this.handleKeyDownForValue}
           onBlur={this.handleBlur}
           autoCapitalize="false"
-          placeholder="e.g.) http://reachaf.com"
+          placeholder={`e.g. ${valueEgs[idx % valueEgs.length]}`}
         />
       </div>
     );
@@ -89,10 +96,7 @@ class NewService extends React.Component {
 
 const mapStateToProps = state => {
   const { value, label } = state.formData.newItems.services;
-  return {
-    persistedLabel: label,
-    persistedValue: value
-  };
+  return { label, value };
 };
 
 const mapDistpatchToProps = dispatch => {

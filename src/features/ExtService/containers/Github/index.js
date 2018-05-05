@@ -10,11 +10,11 @@ import logo from './logo.png';
 
 class GithubExtService extends React.Component {
   handleClick = () => {
+    this.props.requestGithub();
     const { authorizeURL, clientID } = config.api.github;
     const { pathname, origin } = window.location;
     const current = encodeURIComponent(origin + pathname);
     const url = `${authorizeURL}?client_id=${clientID}&redirect_uri=${current}&response_type=code&scope=identify`;
-    this.props.requestGithub();
     window.location.href = url;
   };
 
@@ -31,9 +31,9 @@ class GithubExtService extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { entity } = nextProps;
-    if (entity && entity.length > 0) {
-      this.props.onSuccess({ github: entity });
+    const { entity, status } = nextProps;
+    if (entity && entity.length > 0 && status.success) {
+      this.props.onSuccess({ label: 'Github', value: entity });
     }
   }
 
