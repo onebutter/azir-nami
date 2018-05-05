@@ -26,7 +26,8 @@
 .valueInput,
 .labelInput {
   padding: 0;
-  border: none;
+  border: 0;
+  border-radius: 0;
   background-color: aliceblue;
   margin-bottom: -1px;
   font-family: 'Assistant', sans-serif;
@@ -60,7 +61,8 @@
 .newServiceValueInput,
 .newServiceLabelInput {
   padding: 0;
-  border: none;
+  border: 0;
+  border-radius: 0;
   background-color: aliceblue;
   font-family: 'Assistant', sans-serif;
   font-size: 1rem;

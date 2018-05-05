@@ -32,11 +32,12 @@
 .valueInput,
 .labelInput {
   padding: 0;
-  border: none;
+  border: 0;
   color: aliceblue;
   background-color: #0f3965;
   font-family: 'Assistant', sans-serif;
   border-bottom: 1px solid aliceblue;
+  border-radius: 0;
   margin-bottom: -1px;
 }
 
@@ -63,7 +64,8 @@
 .newAliasLabelInput {
   display: block;
   padding: 0;
-  border: none;
+  border: 0;
+  border-radius: 0;
   color: aliceblue;
   background-color: #0f3965;
   font-family: 'Assistant', sans-serif;
