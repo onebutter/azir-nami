@@ -11,6 +11,18 @@ const Namecard = ({ id, services, aliases, privacy, onDelete }) => {
       X
     </div>
   );
+  const aliasesComponent =
+    aliases && aliases.length ? (
+      <div className={styles.aliases}>
+        <Aliases content={aliases} />
+      </div>
+    ) : null;
+  const servicesComponent =
+    services && services.length ? (
+      <div className={styles.services}>
+        <Services content={services} />
+      </div>
+    ) : null;
   return (
     <div className={styles.root}>
       <div className={styles.title}>
@@ -18,18 +30,8 @@ const Namecard = ({ id, services, aliases, privacy, onDelete }) => {
         {privacy && <div className={privacyClassNames}>{privacy}</div>}
       </div>
       <div className={styles.card}>
-        {aliases &&
-          aliases.length && (
-            <div className={styles.aliases}>
-              <Aliases content={aliases} />
-            </div>
-          )}
-        {services &&
-          services.length && (
-            <div className={styles.services}>
-              <Services content={services} />
-            </div>
-          )}
+        {aliasesComponent}
+        {servicesComponent}
       </div>
     </div>
   );
