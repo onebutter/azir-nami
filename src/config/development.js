@@ -13,6 +13,6 @@ export default {
       clientID: 'f54426016f299b0f1d1e'
     },
     url: 'http://192.168.99.100:4000'
-    // url: 'http://ec2-35-171-224-173.compute-1.amazonaws.com:4000'
+    // url: 'http://ec2-35-170-84-137.compute-1.amazonaws.com:4000'
   }
 };
