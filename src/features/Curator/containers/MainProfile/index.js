@@ -54,6 +54,14 @@ class MainProfile extends React.Component {
                 }
               }}
             />
+            <Route
+              exact
+              path="/:username/public/:idx"
+              render={props => {
+                const { username, idx } = props.match.params;
+                return <PublicNamecard username={username} idx={idx} />;
+              }}
+            />
           </div>
         </div>
       );

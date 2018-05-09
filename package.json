@@ -49,11 +49,9 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
-    "react-slick": "^0.19.0",
     "redux": "^3.7.2",
     "redux-persist": "^5.4.0",
     "redux-reset": "^0.3.0",
-    "redux-saga": "^0.16.0",
-    "slick-carousel": "^1.8.1"
+    "redux-saga": "^0.16.0"
   }
 }

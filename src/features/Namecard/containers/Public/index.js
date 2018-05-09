@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-import Carousel from 'react-slick';
 import { connect } from 'react-redux';
 import styles from './styles.css';
 
@@ -18,13 +17,7 @@ class PublicNamecardsContainer extends React.Component {
       );
     });
     if (!_.isEmpty(entities)) {
-      return (
-        <div className={styles.root}>
-          <Carousel arrows={false} infinite={false}>
-            {publicNcs}
-          </Carousel>
-        </div>
-      );
+      return <div className={styles.root}> {publicNcs} </div>;
     }
     return (
       <div className={styles.root}>
