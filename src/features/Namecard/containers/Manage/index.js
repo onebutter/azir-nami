@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Route, withRouter } from 'react-router';
 import Loading from 'Containers/Loading';
 import { loadNamecardRequest } from '../../actions';
-import DeletableNamecard from '../DeletableNamecard';
+import ManageableNamecard from '../ManageableNamecard';
 // import AddForm from '../AddForm';
 import AddForm from 'Features/AddForm';
 import styles from './styles.css';
@@ -40,7 +40,7 @@ class Manage extends React.Component {
     });
 
     const namecardComponents = sortedEntities.map(({ ...props }) => (
-      <DeletableNamecard key={props.id} {...props} />
+      <ManageableNamecard key={props.id} {...props} />
     ));
     return (
       <div className={styles.root}>

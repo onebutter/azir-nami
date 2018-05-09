@@ -1,0 +1,26 @@
+.root {
+  margin-bottom: 0.7rem;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+.deleteButton {
+  margin-right: 0.5rem;
+}
+
+.public {
+  color: yellowgreen;
+}
+
+.private {
+  color: yellow;
+}
+
+.secret {
+  color: red;
+}

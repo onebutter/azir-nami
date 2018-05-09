@@ -1,38 +1,5 @@
-.card {
+.root{
   background-color: aliceblue;
   padding: 0.5rem;
   border-radius: 1px;
-}
-
-.title {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  margin-bottom: 0.2rem;
-  margin-right: 0.5rem;
-  font-weight: 800;
-}
-
-.private {
-  color: yellow;
-}
-
-.secret {
-  color: red;
-}
-
-.public {
-  color: greenyellow;
-}
-
-.default {
-  color: aliceblue;
-}
-
-.deleteIcon {
-  cursor: pointer;
-  float: right;
-  &:hover {
-    color: silver;
-  }
 }
