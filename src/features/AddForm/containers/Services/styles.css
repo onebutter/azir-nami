@@ -6,6 +6,15 @@
   margin-bottom: 0.5rem;
 }
 
+.newService {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.newServiceButton {
+  margin-left: 1rem;
+}
+
 .displayLabel {
   color: rgb(86, 86, 86);
   cursor: pointer;

@@ -21,6 +21,17 @@ class NewAlias extends React.Component {
     return { label, value };
   }
 
+  handleButtonClick = e => {
+    e.preventDefault();
+    const { label, value } = this.state;
+    const { update, upsert, idx } = this.props;
+    if (label.length + value.length > 0) {
+      upsert({ label, value }, idx);
+      const resetObject = { label: '', value: '' };
+      update(resetObject);
+    }
+  };
+
   handleChange = e => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -61,30 +72,38 @@ class NewAlias extends React.Component {
     const valueEgs = ['Ken', 'Waterloo', 'Computer Engineering'];
     return (
       <div className={styles.newAlias}>
-        <input
-          ref={this.labelInputRef}
-          className={styles.newAliasLabelInput}
-          type="text"
-          value={label}
-          name="label"
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDownForLabel}
-          autoFocus={true}
-          autoCapitalize="false"
-          placeholder={`e.g. ${labelEgs[idx % labelEgs.length]}`}
-        />
-        <input
-          ref={this.valueInputRef}
-          className={styles.newAliasValueInput}
-          type="text"
-          value={value}
-          name="value"
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDownForValue}
-          onBlur={this.handleBlur}
-          autoCapitalize="false"
-          placeholder={`e.g. ${valueEgs[idx % valueEgs.length]}`}
-        />
+        <div className={styles.newAliasInputs}>
+          <input
+            ref={this.labelInputRef}
+            className={styles.newAliasLabelInput}
+            type="text"
+            value={label}
+            name="label"
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDownForLabel}
+            autoFocus={true}
+            autoCapitalize="false"
+            placeholder={`e.g. ${labelEgs[idx % labelEgs.length]}`}
+          />
+          <input
+            ref={this.valueInputRef}
+            className={styles.newAliasValueInput}
+            type="text"
+            value={value}
+            name="value"
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDownForValue}
+            onBlur={this.handleBlur}
+            autoCapitalize="false"
+            placeholder={`e.g. ${valueEgs[idx % valueEgs.length]}`}
+          />
+        </div>
+        <button
+          className={styles.newAliasButton}
+          onClick={this.handleButtonClick}
+        >
+          +
+        </button>
       </div>
     );
   }

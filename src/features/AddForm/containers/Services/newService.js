@@ -34,6 +34,17 @@ class NewService extends React.Component {
     });
   };
 
+  handleButtonClick = e => {
+    e.preventDefault();
+    const { label, value } = this.state;
+    const { update, upsert, idx } = this.props;
+    if (label.length + value.length > 0) {
+      upsert({ label, value }, idx);
+      const resetObject = { label: '', value: '' };
+      update(resetObject);
+    }
+  };
+
   handleKeyDownForLabel = e => {
     const { keyCode } = e;
     if (keyCode === 13) {
@@ -65,30 +76,38 @@ class NewService extends React.Component {
     ];
     return (
       <div className={styles.newService}>
-        <input
-          ref={this.labelInputRef}
-          className={styles.newServiceLabelInput}
-          type="text"
-          value={label}
-          name="label"
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDownForLabel}
-          onBlur={this.handleBlur}
-          autoCapitalize="false"
-          placeholder={`e.g. ${labelEgs[idx % labelEgs.length]}`}
-        />
-        <input
-          ref={this.valueInputRef}
-          className={styles.newServiceValueInput}
-          type="text"
-          value={value}
-          name="value"
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDownForValue}
-          onBlur={this.handleBlur}
-          autoCapitalize="false"
-          placeholder={`e.g. ${valueEgs[idx % valueEgs.length]}`}
-        />
+        <div className={styles.newServiceInputs}>
+          <input
+            ref={this.labelInputRef}
+            className={styles.newServiceLabelInput}
+            type="text"
+            value={label}
+            name="label"
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDownForLabel}
+            onBlur={this.handleBlur}
+            autoCapitalize="false"
+            placeholder={`e.g. ${labelEgs[idx % labelEgs.length]}`}
+          />
+          <input
+            ref={this.valueInputRef}
+            className={styles.newServiceValueInput}
+            type="text"
+            value={value}
+            name="value"
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDownForValue}
+            onBlur={this.handleBlur}
+            autoCapitalize="false"
+            placeholder={`e.g. ${valueEgs[idx % valueEgs.length]}`}
+          />
+        </div>
+        <button
+          className={styles.newServiceButton}
+          onClick={this.handleButtonClick}
+        >
+          +
+        </button>
       </div>
     );
   }
