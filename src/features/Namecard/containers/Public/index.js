@@ -5,12 +5,22 @@ import { connect } from 'react-redux';
 import Swipeable from 'react-swipeable';
 import { Redirect } from 'react-router';
 import { push } from 'react-router-redux';
+import QRCode from 'qrcode.react';
 import styles from './styles.css';
 
 import Indicator from './indicator';
 import Namecard from '../../components/Namecard';
+import QRCodeWrapper from '../QRCodeWrapper';
 
 class PublicNamecardsContainer extends React.Component {
+  state = { isShowingQRCode: false };
+
+  onClickQRCode = () => {
+    this.setState(({ isShowingQRCode }) => ({
+      isShowingQRCode: !isShowingQRCode
+    }));
+  };
+
   prev = () => {
     const { namecards, ncid, redirectTo, username } = this.props;
     if (namecards.length === 1) return;
@@ -60,7 +70,22 @@ class PublicNamecardsContainer extends React.Component {
       return (
         <div className={styles.root}>
           <Swipeable onSwipedLeft={this.next} onSwipedRight={this.prev}>
-            <Namecard services={services} aliases={aliases} />
+            <QRCodeWrapper
+              value={`${window.location.origin}/${username}/public/${ncid}`}
+              showOverlay={this.state.isShowingQRCode}
+              onClick={this.onClickQRCode}
+            >
+              <Namecard services={services} aliases={aliases} />
+              <div
+                className={styles.qrtemp}
+                onClick={this.state.isShowingQRCode ? null : this.onClickQRCode}
+              >
+                <QRCode
+                  value={`${window.location.origin}/${username }`}
+                  size={24}
+                />
+              </div>
+            </QRCodeWrapper>
           </Swipeable>
           {namecards.length > 1 && (
             <div className={styles.buttons}>

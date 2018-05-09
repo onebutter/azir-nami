@@ -24,3 +24,12 @@
 .secret {
   color: red;
 }
+
+.bottomBar {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.showThisCard {
+  cursor: pointer;
+}

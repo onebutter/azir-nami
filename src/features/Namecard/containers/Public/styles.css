@@ -16,3 +16,10 @@
   color: aliceblue;
   padding: 1rem 4rem;
 }
+
+.qrtemp {
+  right: 1rem;
+  top: -3rem;
+  position: relative;
+  float: right;
+}
