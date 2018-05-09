@@ -17,7 +17,7 @@ class ManageableNamecard extends React.Component {
     const { username, redirectTo, id, privacy } = this.props;
     switch (privacy) {
       case 'default':
-        redirectTo(`/${username}/${privacy}`);
+        redirectTo(`/${username}`);
         break;
       default:
         redirectTo(`/${username}/${privacy}/${id}`);
