@@ -13,6 +13,7 @@ import Namecard from '../../components/Namecard';
 class PublicNamecardsContainer extends React.Component {
   prev = () => {
     const { namecards, ncid, redirectTo, username } = this.props;
+    if (namecards.length === 1) return;
     for (let i = 0; i < namecards.length; ++i) {
       const namecard = namecards[i];
       if (namecard.id.toString() === ncid) {
@@ -30,6 +31,7 @@ class PublicNamecardsContainer extends React.Component {
 
   next = () => {
     const { namecards, ncid, redirectTo, username } = this.props;
+    if (namecards.length === 1) return;
     for (let i = 0; i < namecards.length; ++i) {
       const namecard = namecards[i];
       if (namecard.id.toString() === ncid) {
@@ -60,7 +62,7 @@ class PublicNamecardsContainer extends React.Component {
           <Swipeable onSwipedLeft={this.next} onSwipedRight={this.prev}>
             <Namecard services={services} aliases={aliases} />
           </Swipeable>
-          {namecards.length && (
+          {namecards.length > 1 && (
             <div className={styles.buttons}>
               <button onClick={this.prev}>{'⇦'}</button>
               <Indicator namecards={namecards} ncid={ncid} />
