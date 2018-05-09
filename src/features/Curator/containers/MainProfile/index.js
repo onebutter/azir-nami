@@ -56,10 +56,10 @@ class MainProfile extends React.Component {
             />
             <Route
               exact
-              path="/:username/public/:idx"
+              path="/:username/public/:ncid"
               render={props => {
-                const { username, idx } = props.match.params;
-                return <PublicNamecard username={username} idx={idx} />;
+                const { username, ncid } = props.match.params;
+                return <PublicNamecard username={username} ncid={ncid} />;
               }}
             />
           </div>

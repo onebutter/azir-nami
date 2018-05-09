@@ -1,3 +1,18 @@
 .root {
   width: 100%;
 }
+
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons > button {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: aliceblue;
+  padding: 1rem 4rem;
+}
