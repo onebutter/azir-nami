@@ -17,7 +17,6 @@ class PrivacyBar extends React.Component {
         </NavLink>
         <NavLink
           className={styles.navlink}
-          exact
           to={`/${username}/public`}
           activeClassName={styles.active}
         >
