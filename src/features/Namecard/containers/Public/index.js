@@ -81,7 +81,7 @@ class PublicNamecardsContainer extends React.Component {
                 onClick={this.state.isShowingQRCode ? null : this.onClickQRCode}
               >
                 <QRCode
-                  value={`${window.location.origin}/${username }`}
+                  value={`${window.location.origin}/${username}`}
                   size={24}
                 />
               </div>
