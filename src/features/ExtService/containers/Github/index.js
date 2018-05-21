@@ -33,7 +33,14 @@ class GithubExtService extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { entity, status } = nextProps;
     if (entity && entity.length > 0 && status.success) {
-      this.props.onSuccess({ label: 'Github', value: entity });
+      this.props.onSuccess({
+        label: 'Github',
+        value: entity,
+        action: {
+          type: 'extservice',
+          vendor: 'github'
+        }
+      });
     }
   }
 

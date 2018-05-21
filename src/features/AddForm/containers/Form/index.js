@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Aliases from '../Aliases';
 import Services from '../Services';
 import Privacy from '../Privacy';
@@ -8,7 +9,6 @@ import ExternalServices from 'Features/ExtService/containers/Services';
 import DiscordExtService from 'Features/ExtService/containers/Discord';
 import GithubExtService from 'Features/ExtService/containers/Github';
 import styles from './styles.css';
-import { bindActionCreators } from '../../../../../../../Library/Caches/typescript/2.8/node_modules/redux';
 import { upsertService } from '../../actions';
 
 class Form extends React.Component {

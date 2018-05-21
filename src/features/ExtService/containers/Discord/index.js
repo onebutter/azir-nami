@@ -33,7 +33,14 @@ class DiscordExtService extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { entity, status } = nextProps;
     if (entity && entity.length > 0 && status.success) {
-      this.props.onSuccess({ label: 'Discord', value: entity });
+      this.props.onSuccess({
+        label: 'Discord',
+        value: entity,
+        action: {
+          type: 'extservice',
+          vendor: 'discord'
+        }
+      });
     }
   }
 
