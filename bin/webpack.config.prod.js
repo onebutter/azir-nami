@@ -19,7 +19,7 @@ module.exports = {
       debug: false
     }),
     new HtmlWebpackPlugin({
-      template: path.join(process.cwd(), 'src/index.html'),
+      template: path.join(process.cwd(), 'src/index.prod.html'),
       inject: 'body'
     }),
     new webpack.optimize.UglifyJsPlugin({
